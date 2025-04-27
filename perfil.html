@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Texking - Perfil de Usuario</title>
+    <style>
+        /* Reset básico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Header */
+        .header {
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-menu a {
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: #3b82f6;
+        }
+
+        .nav-menu a.active {
+            color: #3b82f6;
+            font-weight: bold;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .search-bar {
+            position: relative;
+        }
+
+        .search-bar input {
+            padding: 8px 35px 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            width: 200px;
+        }
+
+        .search-bar button {
+            position: absolute;
+            right: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .icon-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: #e53e3e;
+            color: white;
+            font-size: 10px;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Main Layout */
+        .main {
+            padding: 30px 0;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #1f2937;
+            color: white;
+            padding: 40px 0;
+            margin-top: 50px;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .footer-section h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #9ca3af;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .contact-info li {
+            color: #9ca3af;
+            margin-bottom: 10px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid #374151;
+            color: #9ca3af;
+        }
+
+        /* Page Header */
+        .page-header {
+            background-color: #3b82f6;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .page-title {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .page-subtitle {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+
+        /* Profile Page Specific Styles */
+        .profile-container {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 30px;
+        }
+
+        .profile-sidebar {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            height: fit-content;
+        }
+
+        .profile-main {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+
+        .profile-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            overflow: hidden;
+            font-size: 48px;
+            color: #3b82f6;
+        }
+
+        .profile-name {
+            text-align: center;
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .profile-email {
+            text-align: center;
+            color: #6b7280;
+            margin-bottom: 25px;
+            font-size: 14px;
+        }
+
+        .nav-profile {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .nav-profile a {
+            padding: 12px 15px;
+            border-radius: 4px;
+            transition: all 0.3s;
+            margin-bottom: 5px;
+        }
+
+        .nav-profile a:hover {
+            background-color: #f3f4f6;
+            color: #3b82f6;
+        }
+
+        .nav-profile a.active {
+            background-color: #ebf5ff;
+            color: #3b82f6;
+            font-weight: 600;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .profile-tabs {
+            margin-bottom: 25px;
+        }
+
+        .tabs-header {
+            display: flex;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .tab-button {
+            padding: 12px 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            color: #6b7280;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .tab-button:hover {
+            color: #3b82f6;
+        }
+
+        .tab-button.active {
+            color: #3b82f6;
+            border-bottom-color: #3b82f6;
+            font-weight: 600;
+        }
+
+        .tab-content {
+            padding: 25px 0;
+        }
+
+        .tab-panel {
+            display: none;
+        }
+
+        .tab-panel.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .save-button {
+            background-color: #3b82f6;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+
+        .save-button:hover {
+            background-color: #2563eb;
+        }
+
+        .cancel-button {
+            background-color: transparent;
+            color: #6b7280;
+            border: 1px solid #ddd;
+            padding: 12px 25px;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-left: 10px;
+        }
+
+        .cancel-button:hover {
+            background-color: #f3f4f6;
+        }
+
+        .order-card {
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+        }
+
+        .order-number {
+            font-weight: 600;
+        }
+
+        .order-date {
+            color: #6b7280;
+        }
+
+        .order-status {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .status-completed {
+            background-color: #d1fae5;
+            color: #065f46;
+        }
+
+        .status-processing {
+            background-color: #fef3c7;
+            color: #92400e;
+        }
+
+        .status-cancelled {
+            background-color: #fee2e2;
+            color: #b91c1c;
+        }
+
+        .order-items {
+            margin-bottom: 15px;
+        }
+
+        .order-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .order-item:last-child {
+            border-bottom: none;
+        }
+
+        .item-image {
+            width: 60px;
+            height: 60px;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .item-info {
+            flex-grow: 1;
+        }
+
+        .item-name {
+            font-weight: 500;
+            margin-bottom: 2px;
+        }
+
+        .item-details {
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        .item-price {
+            font-weight: 600;
+        }
+
+        .order-total {
+            text-align: right;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .order-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        .order-button {
+            padding: 8px 15px;
+            border-radius: 4px;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .primary-button {
+            background-color: #3b82f6;
+            color: white;
+            border: none;
+        }
+
+        .primary-button:hover {
+            background-color: #2563eb;
+        }
+
+        .secondary-button {
+            background-color: transparent;
+            color: #3b82f6;
+            border: 1px solid #3b82f6;
+        }
+
+        .secondary-button:hover {
+            background-color: #ebf5ff;
+        }
+
+        .address-card {
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .address-label {
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .default-badge {
+            background-color: #ebf5ff;
+            color: #3b82f6;
+            font-size: 12px;
+            padding: 2px 8px;
+            border-radius: 20px;
+            margin-left: 10px;
+        }
+
+        .address-content {
+            margin-bottom: 15px;
+            color: #4b5563;
+        }
+
+        .address-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .empty-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+            color: #d1d5db;
+        }
+
+        .empty-message {
+            font-size: 18px;
+            color: #6b7280;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .profile-container {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo">TEXKING</div>
+            
+            <nav class="nav-menu">
+                <a href="index.html">Catálogo</a>
+                <a href="mto.html">Made to Order</a>
+            </nav>
+            
+            <div class="header-actions">
+                <div class="search-bar">
+                    <input type="text" placeholder="Buscar...">
+                    <button>🔍</button>
+                </div>
+                
+                <button class="icon-button">
+                    <a href="perfil.html">👤</a>
+                </button>
+                
+                <button class="icon-button">
+                    <a href="carrito.html">🛒</a>
+                    <span class="cart-count">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="container">
+            <h1 class="page-title">Mi Perfil</h1>
+            <p class="page-subtitle">Administra tu información personal y revisa tus pedidos</p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <div class="profile-container">
+                <!-- Profile Sidebar -->
+                <div class="profile-sidebar">
+                    <div class="profile-avatar">
+                        👤
+                    </div>
+                    <h2 class="profile-name">Juan García</h2>
+                    <p class="profile-email">juan.garcia@ejemplo.com</p>
+                    
+                    <nav class="nav-profile">
+                        <a href="#" class="active">Mi Cuenta</a>
+                        <a href="#">Mis Pedidos</a>
+                        <a href="#">Direcciones</a>
+                        <a href="#">Métodos de Pago</a>
+                        <a href="#">Lista de Deseos</a>
+                        <a href="#">Cerrar Sesión</a>
+                    </nav>
+                </div>
+                
+                <!-- Profile Main Content -->
+                <div class="profile-main">
+                    <div class="profile-tabs">
+                        <div class="tabs-header">
+                            <button class="tab-button active" data-tab="personal">Información Personal</button>
+                            <button class="tab-button" data-tab="orders">Mis Pedidos</button>
+                            <button class="tab-button" data-tab="addresses">Direcciones</button>
+                        </div>
+                        
+                        <div class="tab-content">
+                            <!-- Personal Information Tab -->
+                            <div class="tab-panel active" id="personal-tab">
+                                <h3 class="section-title">Información Personal</h3>
+                                
+                                <form>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label class="form-label">Nombre</label>
+                                            <input type="text" class="form-input" value="Juan">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">Apellidos</label>
+                                            <input type="text" class="form-input" value="García">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="form-label">Email</label>
+                                        <input type="email" class="form-input" value="juan.garcia@ejemplo.com">
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="form-label">Teléfono</label>
+                                        <input type="tel" class="form-input" value="+34 612 345 678">
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="form-label">Fecha de Nacimiento</label>
+                                        <input type="date" class="form-input" value="1985-05-15">
+                                    </div>
+                                    
+                                    <h3 class="section-title">Cambiar Contraseña</h3>
+                                    
+                                    <div class="form-group">
+                                        <label class="form-label">Contraseña Actual</label>
+                                        <input type="password" class="form-input">
+                                    </div>
+                                    
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label class="form-label">Nueva Contraseña</label>
+                                            <input type="password" class="form-input">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">Confirmar Contraseña</label>
+                                            <input type="password" class="form-input">
+                                        </div>
+                                    </div>
+                                    
+                                    <button type="button" class="save-button">Guardar Cambios</button>
+                                    <button type="button" class="cancel-button">Cancelar</button>
+                                </form>
+                            </div>
+                            
+                            <!-- Orders Tab -->
+                            <div class="tab-panel" id="orders-tab">
+                                <h3 class="section-title">Mis Pedidos</h3>
+                                
+                                <!-- Order 1 -->
+                                <div class="order-card">
+                                    <div class="order-header">
+                                        <div>
+                                            <div class="order-number">Pedido #TX-2025-0123</div>
+                                            <div class="order-date">15 de abril, 2025</div>
+                                        </div>
+                                        <span class="order-status status-completed">Completado</span>
+                                    </div>
+                                    
+                                    <div class="order-items">
+                                        <div class="order-item">
+                                            <div class="item-image">👕</div>
+                                            <div class="item-info">
+                                                <div class="item-name">Camiseta Básica</div>
+                                                <div class="item-details">Blanco, Talla M, x1</div>
+                                            </div>
+                                            <div class="item-price">12.99€</div>
+                                        </div>
+                                        <div class="order-item">
+                                            <div class="item-image">👔</div>
+                                            <div class="item-info">
+                                                <div class="item-name">Polo Hombre</div>
+                                                <div class="item-details">Azul, Talla L, x2</div>
+                                            </div>
+                                            <div class="item-price">37.98€</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="order-total">Total: 50.97€</div>
+                                    
+                                    <div class="order-actions">
+                                        <a href="#" class="order-button secondary-button">Ver Detalle</a>
+                                        <a href="#" class="order-button primary-button">Repetir Compra</a>
+                                    </div>
+                                </div>
+                                
+                                <!-- Order 2 -->
+                                <div class="order-card">
+                                    <div class="order-header">
+                                        <div>
+                                            <div class="order-number">Pedido #TX-2025-0089</div>
+                                            <div class="order-date">2 de marzo, 2025</div>
+                                        </div>
+                                        <span class="order-status status-processing">En proceso</span>
+                                    </div>
+                                    
+                                    <div class="order-items">
+                                        <div class="order-item">
+                                            <div class="item-image">👕</div>
+                                            <div class="item-info">
+                                                <div class="item-name">Camiseta Niño</div>
+                                                <div class="item-details">Negro, Talla XL, x1</div>
+                                            </div>
+                                            <div class="item-price">24.99€</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="order-total">Total: 24.99€</div>
+                                    
+                                    <div class="order-actions">
+                                        <a href="#" class="order-button secondary-button">Ver Detalle</a>
+                                        <a href="#" class="order-button secondary-button">Seguimiento</a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Addresses Tab -->
+                            <div class="tab-panel" id="addresses-tab">
+                                <h3 class="section-title">Mis Direcciones</h3>
+                                
+                                <!-- Address 1 -->
+                                <div class="address-card">
+                                    <div class="address-label">
+                                        Casa <span class="default-badge">Predeterminada</span>
+                                    </div>
+                                    <div class="address-content">
+                                        Juan García<br>
+                                        Calle Principal 123, 3º A<br>
+                                        28001 Madrid, España<br>
+                                        Teléfono: +34 612 345 678
+                                    </div>
+                                    <div class="address-actions">
+                                        <a href="#" class="order-button secondary-button">Editar</a>
+                                    </div>
+                                </div>
+                                
+                                <!-- Address 2 -->
+                                <div class="address-card">
+                                    <div class="address-label">Trabajo</div>
+                                    <div class="address-content">
+                                        Juan García<br>
+                                        Av. Comercial 45, Planta 5<br>
+                                        28003 Madrid, España<br>
+                                        Teléfono: +34 612 345 678
+                                    </div>
+                                    <div class="address-actions">
+                                        <a href="#" class="order-button secondary-button">Editar</a>
+                                        <a href="#" class="order-button secondary-button">Eliminar</a>
+                                        <a href="#" class="order-button secondary-button">Predeterminada</a>
+                                    </div>
+                                </div>
+                                
+                                <button type="button" class="save-button" style="margin-top: 20px;">Añadir Nueva Dirección</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-section">
+                    <h3>TEXKING</h3>
+                    <p>Tu tienda de confianza para productos de calidad. Diseños únicos y personalizados.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Enlaces</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Inicio</a></li>
+                        <li><a href="#">Productos</a></li>
+                        <li><a href="#">Made to Order</a></li>
+                        <li><a href="#">Sobre nosotros</a></li>
+                        <li><a href="#">Contacto</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contacto</h3>
+                    <ul class="contact-info">
+                        <li>Email: info@texking.com</li>
+                        <li>Teléfono: +34 123 456 789</li>
+                        <li>Dirección: Calle Principal 123, Madrid</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Texking. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript para la interactividad -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tab navigation
+            const tabButtons = document.querySelectorAll('.tab-button');
+            
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons and panels
+                    document.querySelectorAll('.tab-button').forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    document.querySelectorAll('.tab-panel').forEach(panel => {
+                        panel.classList.remove('active');
+                    });
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    // Show corresponding panel
+                    const tabId = this.getAttribute('data-tab');
+                    document.getElementById(tabId + '-tab').classList.add('active');
+                });
+            });
+            
+            // Sidebar navigation
+            const sidebarLinks = document.querySelectorAll('.nav-profile a');
+            
+            sidebarLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Remove active class from all sidebar links
+                    sidebarLinks.forEach(sideLink => {
+                        sideLink.classList.remove('active');
+                    });
+                    
+                    // Add active class to clicked link
+                    this.classList.add('active');
+                    
+                    // Handle tab navigation based on sidebar link
+                    const linkText = this.textContent.trim();
+                    
+                    if (linkText === 'Mi Cuenta') {
+                        document.querySelector('[data-tab="personal"]').click();
+                    } else if (linkText === 'Mis Pedidos') {
+                        document.querySelector('[data-tab="orders"]').click();
+                    } else if (linkText === 'Direcciones') {
+                        document.querySelector('[data-tab="addresses"]').click();
+                    }
+                });
+            });
+            
+            // Form submission (demo)
+            const saveButton = document.querySelector('.save-button');
+            
+            saveButton.addEventListener('click', function() {
+                alert('Los cambios han sido guardados con éxito');
+            });
+            
+            // Cancel button
+            const cancelButton = document.querySelector('.cancel-button');
+            
+            cancelButton.addEventListener('click', function() {
+                // Reset form or navigate back
+                alert('Cambios cancelados');
+            });
+        });
+    </script>
+</body>
+</html>

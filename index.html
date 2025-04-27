@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Texking - Catálogo Online</title>
+    <style>
+        /* Reset básico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Header */
+        .header {
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-menu a {
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: #3b82f6;
+        }
+        
+        .nav-menu a.active {
+            color: #3b82f6;
+            font-weight: bold;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .search-bar {
+            position: relative;
+        }
+
+        .search-bar input {
+            padding: 8px 35px 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            width: 200px;
+        }
+
+        .search-bar button {
+            position: absolute;
+            right: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .icon-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: #e53e3e;
+            color: white;
+            font-size: 10px;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Main Layout */
+        .main {
+            padding: 30px 0;
+        }
+
+        .main-container {
+            display: flex;
+            gap: 30px;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            flex-shrink: 0;
+        }
+
+        .filter-section {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .filter-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .filter-group {
+            margin-bottom: 20px;
+        }
+
+        .filter-group-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .filter-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .filter-option input {
+            margin-right: 10px;
+        }
+
+        .filter-option label {
+            cursor: pointer;
+        }
+
+        .clear-filters {
+            background-color: #e5e7eb;
+            color: #4b5563;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+
+        .clear-filters:hover {
+            background-color: #d1d5db;
+        }
+
+        /* Product Grid */
+        .product-section {
+            flex: 1;
+        }
+
+        .product-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .product-title {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .product-sort {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .product-sort select {
+            padding: 6px 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: white;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .product-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-image {
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 15px;
+        }
+
+        .product-name {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .product-category {
+            color: #6b7280;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .product-price {
+            font-weight: 600;
+            font-size: 18px;
+        }
+
+        .add-to-cart {
+            background-color: #3b82f6;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .add-to-cart:hover {
+            background-color: #2563eb;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #1f2937;
+            color: white;
+            padding: 40px 0;
+            margin-top: 50px;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .footer-section h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #9ca3af;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .contact-info li {
+            color: #9ca3af;
+            margin-bottom: 10px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid #374151;
+            color: #9ca3af;
+        }
+
+        /* Toggle for mobile sidebar */
+        .sidebar-toggle {
+            display: none;
+            width: 100%;
+            padding: 10px 15px;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            text-align: left;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .product-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .main-container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+            }
+
+            .sidebar-toggle {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .sidebar-filters {
+                display: none;
+            }
+
+            .sidebar-filters.active {
+                display: block;
+            }
+
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .product-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+        }
+
+        /* Utility icons */
+        .icon {
+            width: 20px;
+            height: 20px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo">TEXKING</div>
+            
+            <nav class="nav-menu">
+                <a href="index.html" class="active">Catálogo</a>
+                <a href="mto.html">Made to Order</a>
+            </nav>
+            
+            <div class="header-actions">
+                <div class="search-bar">
+                    <input type="text" placeholder="Buscar...">
+                    <button>🔍</button>
+                </div>
+                
+                <button class="icon-button">
+                    <a href="perfil.html">👤</a>
+                </button>
+                
+                <button class="icon-button">
+                    <a href="carrito.html">🛒</a>
+                    <span class="cart-count">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Mobile Sidebar Toggle -->
+            <button class="sidebar-toggle" id="sidebar-toggle">
+                Filtros
+                <span>▼</span>
+            </button>
+            
+            <div class="main-container">
+                <!-- Sidebar Filters -->
+                <aside class="sidebar">
+                    <div class="sidebar-filters" id="sidebar-filters">
+                        <div class="filter-section">
+                            <h2 class="filter-title">Filtros</h2>
+                            
+                            <div class="filter-group">
+                                <h3 class="filter-group-title">Categoría</h3>
+                                <div class="filter-option">
+                                    <input type="checkbox" id="category-camisetas" name="category">
+                                    <label for="category-camisetas">Camisetas</label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" id="category-pantalones" name="category">
+                                    <label for="category-pantalones">Pantalones</label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" id="category-accesorios" name="category">
+                                    <label for="category-accesorios">Accesorios</label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" id="category-calzado" name="category">
+                                    <label for="category-calzado">Calzado</label>
+                                </div>
+                            </div>
+                            
+                            <div class="filter-group">
+                                <h3 class="filter-group-title">Precio</h3>
+                                <div class="filter-option">
+                                    <input type="checkbox" id="price-0-25" name="price">
+                                    <label for="price-0-25"></label>1.15 - 5.75€</label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" id="price-25-50" name="price">
+                                    <label for="price-25-50">1.15 - 5.75€</label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" id="price-50-100" name="price">
+                                    <label for="price-50-100">51.15 - 5.75€</label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" id="price-100plus" name="price">
+                                    <label for="price-100plus"></label>1.15 - 5.75€+</label>
+                                </div>
+                            </div>
+                            
+                            <div class="filter-group">
+                                <h3 class="filter-group-title">Color</h3>
+                                <div class="filter-option">
+                                    <input type="checkbox" id="color-negro" name="color">
+                                    <label for="color-negro">Negro</label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" id="color-blanco" name="color">
+                                    <label for="color-blanco">Blanco</label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" id="color-azul" name="color">
+                                    <label for="color-azul">Azul</label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" id="color-rojo" name="color">
+                                    <label for="color-rojo">Rojo</label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" id="color-verde" name="color">
+                                    <label for="color-verde">Verde</label>
+                                </div>
+                            </div>
+                            
+                            <div class="filter-group">
+                                <h3 class="filter-group-title">Talla</h3>
+                                <div class="filter-option">
+                                    <input type="checkbox" id="size-xs" name="size">
+                                    <label for="size-xs">XS</label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" id="size-s" name="size">
+                                    <label for="size-s">S</label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" id="size-m" name="size">
+                                    <label for="size-m">M</label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" id="size-l" name="size">
+                                    <label for="size-l">L</label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" id="size-xl" name="size">
+                                    <label for="size-xl">XL</label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" id="size-xxl" name="size">
+                                    <label for="size-xxl">XXL</label>
+                                </div>
+                            </div>
+                            
+                            <button class="clear-filters">Limpiar filtros</button>
+                        </div>
+                    </div>
+                </aside>
+                
+                <!-- Product Grid -->
+                <section class="product-section">
+                    <div class="product-header">
+                        <h1 class="product-title">Productos</h1>
+                        <div class="product-sort">
+                            <span>Ordenar por:</span>
+                            <select>
+                                <option>Relevancia</option>
+                                <option>Precio: menor a mayor</option>
+                                <option>Precio: mayor a menor</option>
+                                <option>Más recientes</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="product-grid">
+                        <!-- Producto 1 -->
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="imgs/Page 12 Vola Hombre.jpg" alt="Camiseta Básica">
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-name">Camiseta Básica</h3>
+                                <p class="product-category">Camisetas</p>
+                                <div class="product-footer">
+                                    <span class="product-price">1.15 - 5.75€</span>
+                                    <button class="add-to-cart">Añadir</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Producto 2 -->
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="imgs/Page 6 Sintra niño.jpg" alt="Pantalón Slim Fit">
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-name">Camiseta Niño</h3>
+                                <p class="product-category">Pantalones</p>
+                                <div class="product-footer">
+                                    <span class="product-price">1.15 - 5.75€</span>
+                                    <button class="add-to-cart">Añadir</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Producto 3 -->
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="imgs/Page 15 RupPur .jpg" alt="Gorra Classic">
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-name">Polo Hombre</h3>
+                                <p class="product-category">Accesorios</p>
+                                <div class="product-footer">
+                                    <span class="product-price">1.15 - 5.75€</span>
+                                    <button class="add-to-cart">Añadir</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Producto 4 -->
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="imgs/Page 16 .jpg" alt="Zapatillas Urban">
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-name">Polo Unisex</h3>
+                                <p class="product-category">Calzado</p>
+                                <div class="product-footer">
+                                    <span class="product-price">1.15 - 5.75€</span>
+                                    <button class="add-to-cart">Añadir</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Producto 5 -->
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="imgs/Page 11 casablanca.jpg" alt="Camiseta Gráfica">
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-name">Camiseta Gráfica</h3>
+                                <p class="product-category">Camisetas</p>
+                                <div class="product-footer">
+                                    <span class="product-price">1.15 - 5.75€</span>
+                                    <button class="add-to-cart">Añadir</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Producto 6 -->
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="imgs/Page 10 Nice.jpg" alt="Jeans Desgastados">
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-name">Camiseta Mujer</h3>
+                                <p class="product-category">Pantalones</p>
+                                <div class="product-footer">
+                                    <span class="product-price">1.15 - 5.75€</span>
+                                    <button class="add-to-cart">Añadir</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Producto 7 -->
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="imgs/Page 4 Dacca.jpg" alt="Cinturón de Cuero">
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-name">Camiseta Algodon Unisex</h3>
+                                <p class="product-category">Accesorios</p>
+                                <div class="product-footer">
+                                    <span class="product-price">1.15 - 5.75€</span>
+                                    <button class="add-to-cart">Añadir</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Producto 8 -->
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="imgs/Page 8 chile unisex.jpg" alt="Botas Trekking">
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-name">Basica Unisex</h3>
+                                <p class="product-category">Calzado</p>
+                                <div class="product-footer">
+                                    <span class="product-price">1.15 - 5.75€</span>
+                                    <button class="add-to-cart">Añadir</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-section">
+                    <h3>TEXKING</h3>
+                    <p>Tu tienda de confianza para productos de calidad. Diseños únicos y personalizados.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Enlaces</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Inicio</a></li>
+                        <li><a href="#">Productos</a></li>
+                        <li><a href="#">Made to Order</a></li>
+                        <li><a href="#">Sobre nosotros</a></li>
+                        <li><a href="#">Contacto</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contacto</h3>
+                    <ul class="contact-info">
+                        <li>Email: info@texking.com</li>
+                        <li>Teléfono: +34 123 456 789</li>
+                        <li>Dirección: Calle Principal 123, Madrid</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Texking. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript para la funcionalidad del sidebar en móviles -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sidebarToggle = document.getElementById('sidebar-toggle');
+            const sidebarFilters = document.getElementById('sidebar-filters');
+            
+            sidebarToggle.addEventListener('click', function() {
+                sidebarFilters.classList.toggle('active');
+                const arrow = sidebarToggle.querySelector('span');
+                arrow.textContent = sidebarFilters.classList.contains('active') ? '▲' : '▼';
+            });
+        });
+    </script>
+</body>
+</html>

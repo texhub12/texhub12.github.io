@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Texking - Made to Order</title>
+    <style>
+        /* Reset básico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Header */
+        .header {
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-menu a {
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: #3b82f6;
+        }
+
+        .nav-menu a.active {
+            color: #3b82f6;
+            font-weight: bold;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .search-bar {
+            position: relative;
+        }
+
+        .search-bar input {
+            padding: 8px 35px 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            width: 200px;
+        }
+
+        .search-bar button {
+            position: absolute;
+            right: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .icon-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: #e53e3e;
+            color: white;
+            font-size: 10px;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Main Layout */
+        .main {
+            padding: 30px 0;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #1f2937;
+            color: white;
+            padding: 40px 0;
+            margin-top: 50px;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .footer-section h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #9ca3af;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .contact-info li {
+            color: #9ca3af;
+            margin-bottom: 10px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid #374151;
+            color: #9ca3af;
+        }
+
+        /* Made to Order styles */
+        .page-header {
+            background-color: #3b82f6;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .page-title {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .page-subtitle {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+
+        .customizer-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .product-preview {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .preview-image {
+            width: 100%;
+            max-width: 350px;
+            height: 350px;
+            background-color: #f0f0f0;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px dashed #ccc;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .preview-image img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .product-details {
+            width: 100%;
+            text-align: center;
+        }
+
+        .product-name {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .product-desc {
+            color: #6b7280;
+            margin-bottom: 15px;
+        }
+
+        .price-tag {
+            font-size: 28px;
+            font-weight: bold;
+            color: #3b82f6;
+            margin-bottom: 20px;
+        }
+
+        .form-container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+
+        .form-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .form-section {
+            margin-bottom: 25px;
+        }
+
+        .form-section-title {
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .form-control:focus {
+            border-color: #3b82f6;
+            outline: none;
+        }
+
+        .color-options, .material-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .color-option {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .color-option:hover, .color-option.selected {
+            transform: scale(1.1);
+            border-color: #333;
+        }
+
+        .material-option {
+            padding: 8px 15px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background-color 0.2s, color 0.2s;
+        }
+
+        .material-option:hover, .material-option.selected {
+            background-color: #3b82f6;
+            color: white;
+            border-color: #3b82f6;
+        }
+
+        .size-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .size-option {
+            text-align: center;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .size-option:hover, .size-option.selected {
+            background-color: #3b82f6;
+            color: white;
+            border-color: #3b82f6;
+        }
+
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            width: fit-content;
+        }
+
+        .quantity-btn {
+            width: 32px;
+            height: 32px;
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .quantity-btn:first-child {
+            border-radius: 4px 0 0 4px;
+        }
+
+        .quantity-btn:last-child {
+            border-radius: 0 4px 4px 0;
+        }
+
+        .quantity-input {
+            width: 50px;
+            height: 32px;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-left: none;
+            border-right: none;
+            font-size: 16px;
+        }
+
+        .file-upload {
+            margin-top: 10px;
+        }
+
+        .file-upload-btn {
+            display: inline-block;
+            padding: 10px 15px;
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .file-upload-btn:hover {
+            background-color: #e5e5e5;
+        }
+
+        .file-name {
+            margin-top: 5px;
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        .submit-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .add-to-cart-btn {
+            background-color: #3b82f6;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .add-to-cart-btn:hover {
+            background-color: #2563eb;
+        }
+
+        .instructions-section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .instructions-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .instructions-steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .step-card {
+            padding: 20px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background-color: #3b82f6;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin: 0 auto 15px;
+        }
+
+        .step-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .customizer-container {
+                grid-template-columns: 1fr;
+            }
+
+            .instructions-steps {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo">TEXKING</div>
+            
+            <nav class="nav-menu">
+                <a href="index.html">Catálogo</a>
+                <a href="mto.html" class="active">Made to Order</a>
+            </nav>
+            
+            <div class="header-actions">
+                <div class="search-bar">
+                    <input type="text" placeholder="Buscar...">
+                    <button>🔍</button>
+                </div>
+                
+                <button class="icon-button">
+                    <a href="perfil.html">👤</a>
+                </button>
+                
+                <button class="icon-button">
+                    <a href="carrito.html">🛒</a>
+                    <span class="cart-count">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="container">
+            <h1 class="page-title">Crea tu propia prenda</h1>
+            <p class="page-subtitle">Personaliza cada detalle y recibe una prenda única hecha a tu medida</p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Instructions Section -->
+            <section class="instructions-section">
+                <h2 class="instructions-title">¿Cómo funciona?</h2>
+                <div class="instructions-steps">
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <h3 class="step-title">Personaliza</h3>
+                        <p>Elige el tipo de prenda, color, material y talla que deseas. Añade tu logo o diseño personal.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <h3 class="step-title">Añade al carrito</h3>
+                        <p>Revisa tu diseño, ajusta la cantidad y añade la prenda personalizada a tu carrito.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <h3 class="step-title">Recibe</h3>
+                        <p>Nuestro equipo confeccionará tu prenda exactamente como la has diseñado y te la enviaremos.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Product Customizer -->
+            <div class="customizer-container">
+                <!-- Product Preview -->
+                <div class="product-preview">
+                    <div class="preview-image">
+                        <img src="/api/placeholder/350/350" alt="Vista previa de la prenda" id="preview-image">
+                    </div>
+                    <div class="product-details">
+                        <h2 class="product-name">Camiseta Personalizada</h2>
+                        <p class="product-desc">100% algodón, personalizable con tu diseño</p>
+                        <div class="price-tag">12.99€</div>
+                    </div>
+                </div>
+
+                <!-- Customization Form -->
+                <div class="form-container">
+                    <h2 class="form-title">Personaliza tu prenda</h2>
+                    
+                    <form id="customization-form">
+                        <!-- Product Type -->
+                        <div class="form-section">
+                            <h3 class="form-section-title">Tipo de prenda</h3>
+                            <div class="form-group">
+                                <select class="form-control" id="product-type">
+                                    <option value="tshirt">Camiseta</option>
+                                    <option value="polo">Polo</option>
+                                    <option value="hoodie">Sudadera</option>
+                                    <option value="cap">Gorra</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <!-- Color Selection -->
+                        <div class="form-section">
+                            <h3 class="form-section-title">Color</h3>
+                            <div class="color-options">
+                                <div class="color-option selected" style="background-color: #ffffff;" data-color="white"></div>
+                                <div class="color-option" style="background-color: #000000;" data-color="black"></div>
+                                <div class="color-option" style="background-color: #1E40AF;" data-color="blue"></div>
+                                <div class="color-option" style="background-color: #DC2626;" data-color="red"></div>
+                                <div class="color-option" style="background-color: #047857;" data-color="green"></div>
+                                <div class="color-option" style="background-color: #F59E0B;" data-color="yellow"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Material Selection -->
+                        <div class="form-section">
+                            <h3 class="form-section-title">Material</h3>
+                            <div class="material-options">
+                                <div class="material-option selected" data-material="cotton">Algodón</div>
+                                <div class="material-option" data-material="polyester">Poliéster</div>
+                                <div class="material-option" data-material="blend">Mezcla</div>
+                                <div class="material-option" data-material="organic">Orgánico</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Size Selection -->
+                        <div class="form-section">
+                            <h3 class="form-section-title">Talla</h3>
+                            <div class="size-grid">
+                                <div class="size-option" data-size="XS">XS</div>
+                                <div class="size-option" data-size="S">S</div>
+                                <div class="size-option selected" data-size="M">M</div>
+                                <div class="size-option" data-size="L">L</div>
+                                <div class="size-option" data-size="XL">XL</div>
+                                <div class="size-option" data-size="XXL">XXL</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Quantity -->
+                        <div class="form-section">
+                            <h3 class="form-section-title">Cantidad</h3>
+                            <div class="quantity-selector">
+                                <div class="quantity-btn" id="decrease-quantity">-</div>
+                                <input type="text" class="quantity-input" id="quantity" value="1" readonly>
+                                <div class="quantity-btn" id="increase-quantity">+</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Custom Design Upload -->
+                        <div class="form-section">
+                            <h3 class="form-section-title">Tu diseño</h3>
+                            <p>Sube tu logo o diseño personalizado (PNG, JPG o SVG)</p>
+                            <div class="file-upload">
+                                <label for="design-upload" class="file-upload-btn">
+                                    Seleccionar archivo
+                                </label>
+                                <input type="file" id="design-upload" accept=".png,.jpg,.jpeg,.svg" style="display: none;">
+                                <div class="file-name" id="file-name">Ningún archivo seleccionado</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Additional Notes -->
+                        <div class="form-section">
+                            <h3 class="form-section-title">Instrucciones adicionales</h3>
+                            <div class="form-group">
+                                <textarea class="form-control" id="notes" rows="3" placeholder="Detalles específicos sobre la ubicación del diseño, tamaño, etc."></textarea>
+                            </div>
+                        </div>
+                        
+                        <!-- Submit Section -->
+                        <div class="submit-section">
+                            <div class="total-price">
+                                <span>Total:</span>
+                                <span class="price-tag" id="total-price">12.99€</span>
+                            </div>
+                            <button type="button" class="add-to-cart-btn">Añadir al carrito</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-section">
+                    <h3>TEXKING</h3>
+                    <p>Tu tienda de confianza para productos de calidad. Diseños únicos y personalizados.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Enlaces</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Inicio</a></li>
+                        <li><a href="#">Productos</a></li>
+                        <li><a href="#">Made to Order</a></li>
+                        <li><a href="#">Sobre nosotros</a></li>
+                        <li><a href="#">Contacto</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contacto</h3>
+                    <ul class="contact-info">
+                        <li>Email: info@texking.com</li>
+                        <li>Teléfono: +34 123 456 789</li>
+                        <li>Dirección: Calle Principal 123, Madrid</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Texking. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript para la interactividad del formulario -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Color options
+            const colorOptions = document.querySelectorAll('.color-option');
+            colorOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    // Remove selected class from all options
+                    colorOptions.forEach(opt => opt.classList.remove('selected'));
+                    // Add selected class to clicked option
+                    this.classList.add('selected');
+                    
+                    // Update preview (simplified for demo)
+                    const colorName = this.getAttribute('data-color');
+                    console.log(`Color seleccionado: ${colorName}`);
+                });
+            });
+            
+            // Material options
+            const materialOptions = document.querySelectorAll('.material-option');
+            materialOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    materialOptions.forEach(opt => opt.classList.remove('selected'));
+                    this.classList.add('selected');
+                    
+                    const material = this.getAttribute('data-material');
+                    console.log(`Material seleccionado: ${material}`);
+                });
+            });
+            
+            // Size options
+            const sizeOptions = document.querySelectorAll('.size-option');
+            sizeOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    sizeOptions.forEach(opt => opt.classList.remove('selected'));
+                    this.classList.add('selected');
+                    
+                    const size = this.getAttribute('data-size');
+                    console.log(`Talla seleccionada: ${size}`);
+                });
+            });
+            
+            // Quantity selector
+            const decreaseBtn = document.getElementById('decrease-quantity');
+            const increaseBtn = document.getElementById('increase-quantity');
+            const quantityInput = document.getElementById('quantity');
+            
+            decreaseBtn.addEventListener('click', function() {
+                let quantity = parseInt(quantityInput.value);
+                if (quantity > 1) {
+                    quantityInput.value = quantity - 1;
+                    updateTotalPrice();
+                }
+            });
+            
+            increaseBtn.addEventListener('click', function() {
+                let quantity = parseInt(quantityInput.value);
+                quantityInput.value = quantity + 1;
+                updateTotalPrice();
+            });
+            
+            // File upload
+            const fileInput = document.getElementById('design-upload');
+            const fileName = document.getElementById('file-name');
+            
+            fileInput.addEventListener('change', function() {
+                if (this.files.length > 0) {
+                    fileName.textContent = this.files[0].name;
+                } else {
+                    fileName.textContent = 'Ningún archivo seleccionado';
+                }
+            });
+            
+            // Product type change
+            const productTypeSelect = document.getElementById('product-type');
+            const productName = document.querySelector('.product-name');
+            const basePrice = document.querySelector('.price-tag');
+            
+            productTypeSelect.addEventListener('change', function() {
+                const productType = this.value;
+                let productTitle, price;
+                
+                switch(productType) {
+                    case 'tshirt':
+                        productTitle = 'Camiseta Personalizada';
+                        price = '12.99';
+                        break;
+                    case 'polo':
+                        productTitle = 'Polo Personalizado';
+                        price = '18.99';
+                        break;
+                    case 'hoodie':
+                        productTitle = 'Sudadera Personalizada';
+                        price = '24.99';
+                        break;
+                    case 'cap':
+                        productTitle = 'Gorra Personalizada';
+                        price = '9.99';
+                        break;
+                }
+                
+                productName.textContent = productTitle;
+                basePrice.textContent = `${price}€`;
+                document.getElementById('total-price').textContent = `${price}€`;
+                
+                // Here we would also update the preview image
+                console.log(`Producto seleccionado: ${productTitle} a ${price}€`);
+            });
+            
+            // Update total price based on quantity
+            function updateTotalPrice() {
+                const quantity = parseInt(document.getElementById('quantity').value);
+                const basePrice = parseFloat(document.querySelector('.price-tag').textContent);
+                const total = (quantity * basePrice).toFixed(2);
+                document.getElementById('total-price').textContent = `${total}€`;
+            }
+            
+            // Add to cart button
+            const addToCartBtn = document.querySelector('.add-to-cart-btn');
+            addToCartBtn.addEventListener('click', function() {
+                const product = document.querySelector('.product-name').textContent;
+                const color = document.querySelector('.color-option.selected').getAttribute('data-color');
+                const material = document.querySelector('.material-option.selected').getAttribute('data-material');
+                const size = document.querySelector('.size-option.selected').getAttribute('data-size');
+                const quantity = document.getElementById('quantity').value;
+                
+                alert(`Producto añadido al carrito:
+                    - ${product}
+                    - Color: ${color}
+                    - Material: ${material}
+                    - Talla: ${size}
+                    - Cantidad: ${quantity}`);
+                
+                // Update cart count
+                const cartCount = document.querySelector('.cart-count');
+                cartCount.textContent = parseInt(cartCount.textContent) + parseInt(quantity);
+            });
+        });
+    </script>
+</body>
+</html>
