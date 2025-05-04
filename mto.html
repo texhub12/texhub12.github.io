@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -281,6 +282,22 @@
             margin-bottom: 15px;
         }
 
+        #colorInput {
+            width: 100%;
+            padding: 10px 14px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            outline: none;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        #colorInput:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+
         .form-group {
             margin-bottom: 15px;
         }
@@ -305,7 +322,8 @@
             outline: none;
         }
 
-        .color-options, .material-options {
+        .color-options,
+        .material-options {
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
@@ -321,7 +339,8 @@
             transition: transform 0.2s, border-color 0.2s;
         }
 
-        .color-option:hover, .color-option.selected {
+        .color-option:hover,
+        .color-option.selected {
             transform: scale(1.1);
             border-color: #333;
         }
@@ -334,7 +353,8 @@
             transition: background-color 0.2s, color 0.2s;
         }
 
-        .material-option:hover, .material-option.selected {
+        .material-option:hover,
+        .material-option.selected {
             background-color: #3b82f6;
             color: white;
             border-color: #3b82f6;
@@ -356,7 +376,8 @@
             transition: background-color 0.2s;
         }
 
-        .size-option:hover, .size-option.selected {
+        .size-option:hover,
+        .size-option.selected {
             background-color: #3b82f6;
             color: white;
             border-color: #3b82f6;
@@ -509,6 +530,7 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Header -->
     <header class="header">
@@ -516,23 +538,23 @@
             <div class="logo">
                 <img src="imgs/logo.png" alt="" style="max-width: 150px;">
             </div>
-            
+
             <nav class="nav-menu">
                 <a href="index.html">Catálogo</a>
                 <a href="mto.html" class="active">Made to Order</a>
                 <a href="https://texking.es/contacto/">Contacto</a>
             </nav>
-            
+
             <div class="header-actions">
                 <div class="search-bar">
                     <input type="text" placeholder="Buscar...">
                     <button>🔍</button>
                 </div>
-                
+
                 <button class="icon-button">
                     <a href="perfil.html">👤</a>
                 </button>
-                
+
                 <button class="icon-button">
                     <a href="carrito.html">🛒</a>
                     <span class="cart-count">0</span>
@@ -559,7 +581,8 @@
                     <div class="step-card">
                         <div class="step-number">1</div>
                         <h3 class="step-title">Personaliza</h3>
-                        <p>Elige el tipo de prenda, color, material y talla que deseas. Añade tu logo o diseño personal.</p>
+                        <p>Elige el tipo de prenda, color, material y talla que deseas. Añade tu logo o diseño personal.
+                        </p>
                     </div>
                     <div class="step-card">
                         <div class="step-number">2</div>
@@ -590,7 +613,7 @@
                 <!-- Customization Form -->
                 <div class="form-container">
                     <h2 class="form-title">Personaliza tu prenda</h2>
-                    
+
                     <form id="customization-form">
                         <!-- Product Type -->
                         <div class="form-section">
@@ -604,15 +627,14 @@
                                 </select>
                             </div>
                         </div>
-                        
+
                         <!-- Color Selection -->
                         <div class="form-section">
                             <h3 class="form-section-title">Color</h3>
                             <input type="text" id="colorInput" placeholder="Escribe un color (ej: #FF0000 o red)">
-                            <div id="colorPreview" style="width: 50px; height: 50px; border: 1px solid #ccc; margin-top: 10px;"></div>
-                          </div>
-                          
-                        
+                        </div>
+
+
                         <!-- Material Selection -->
                         <div class="form-section">
                             <h3 class="form-section-title">Material</h3>
@@ -623,7 +645,7 @@
                                 <div class="material-option" data-material="organic">Orgánico</div>
                             </div>
                         </div>
-                        
+
                         <!-- Size Selection -->
                         <div class="form-section">
                             <h3 class="form-section-title">Talla</h3>
@@ -636,7 +658,7 @@
                                 <div class="size-option" data-size="XXL">XXL</div>
                             </div>
                         </div>
-                        
+
                         <!-- Quantity -->
                         <div class="form-section">
                             <h3 class="form-section-title">Cantidad</h3>
@@ -646,7 +668,7 @@
                                 <div class="quantity-btn" id="increase-quantity">+</div>
                             </div>
                         </div>
-                        
+
                         <!-- Custom Design Upload -->
                         <div class="form-section">
                             <h3 class="form-section-title">Tu diseño</h3>
@@ -655,19 +677,21 @@
                                 <label for="design-upload" class="file-upload-btn">
                                     Seleccionar archivo
                                 </label>
-                                <input type="file" id="design-upload" accept=".png,.jpg,.jpeg,.svg" style="display: none;">
+                                <input type="file" id="design-upload" accept=".png,.jpg,.jpeg,.svg"
+                                    style="display: none;">
                                 <div class="file-name" id="file-name">Ningún archivo seleccionado</div>
                             </div>
                         </div>
-                        
+
                         <!-- Additional Notes -->
                         <div class="form-section">
                             <h3 class="form-section-title">Instrucciones adicionales</h3>
                             <div class="form-group">
-                                <textarea class="form-control" id="notes" rows="3" placeholder="Detalles específicos sobre la ubicación del diseño, tamaño, etc."></textarea>
+                                <textarea class="form-control" id="notes" rows="3"
+                                    placeholder="Detalles específicos sobre la ubicación del diseño, tamaño, etc."></textarea>
                             </div>
                         </div>
-                        
+
                         <!-- Submit Section -->
                         <div class="submit-section">
                             <button type="button" class="add-to-cart-btn">Pide tu presupuesto</button>
@@ -705,87 +729,87 @@
 
     <!-- JavaScript para la interactividad del formulario -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Color options
             const colorOptions = document.querySelectorAll('.color-option');
             colorOptions.forEach(option => {
-                option.addEventListener('click', function() {
+                option.addEventListener('click', function () {
                     // Remove selected class from all options
                     colorOptions.forEach(opt => opt.classList.remove('selected'));
                     // Add selected class to clicked option
                     this.classList.add('selected');
-                    
+
                     // Update preview (simplified for demo)
                     const colorName = this.getAttribute('data-color');
                     console.log(`Color seleccionado: ${colorName}`);
                 });
             });
-            
+
             // Material options
             const materialOptions = document.querySelectorAll('.material-option');
             materialOptions.forEach(option => {
-                option.addEventListener('click', function() {
+                option.addEventListener('click', function () {
                     materialOptions.forEach(opt => opt.classList.remove('selected'));
                     this.classList.add('selected');
-                    
+
                     const material = this.getAttribute('data-material');
                     console.log(`Material seleccionado: ${material}`);
                 });
             });
-            
+
             // Size options
             const sizeOptions = document.querySelectorAll('.size-option');
             sizeOptions.forEach(option => {
-                option.addEventListener('click', function() {
+                option.addEventListener('click', function () {
                     sizeOptions.forEach(opt => opt.classList.remove('selected'));
                     this.classList.add('selected');
-                    
+
                     const size = this.getAttribute('data-size');
                     console.log(`Talla seleccionada: ${size}`);
                 });
             });
-            
+
             // Quantity selector
             const decreaseBtn = document.getElementById('decrease-quantity');
             const increaseBtn = document.getElementById('increase-quantity');
             const quantityInput = document.getElementById('quantity');
-            
-            decreaseBtn.addEventListener('click', function() {
+
+            decreaseBtn.addEventListener('click', function () {
                 let quantity = parseInt(quantityInput.value);
                 if (quantity > 1) {
                     quantityInput.value = quantity - 1;
                     updateTotalPrice();
                 }
             });
-            
-            increaseBtn.addEventListener('click', function() {
+
+            increaseBtn.addEventListener('click', function () {
                 let quantity = parseInt(quantityInput.value);
                 quantityInput.value = quantity + 1;
                 updateTotalPrice();
             });
-            
+
             // File upload
             const fileInput = document.getElementById('design-upload');
             const fileName = document.getElementById('file-name');
-            
-            fileInput.addEventListener('change', function() {
+
+            fileInput.addEventListener('change', function () {
                 if (this.files.length > 0) {
                     fileName.textContent = this.files[0].name;
                 } else {
                     fileName.textContent = 'Ningún archivo seleccionado';
                 }
             });
-            
+
             // Product type change
             const productTypeSelect = document.getElementById('product-type');
             const productName = document.querySelector('.product-name');
             const basePrice = document.querySelector('.price-tag');
-            
-            productTypeSelect.addEventListener('change', function() {
+
+            productTypeSelect.addEventListener('change', function () {
                 const productType = this.value;
                 let productTitle, price;
-                
-                switch(productType) {
+
+                switch (productType) {
                     case 'tshirt':
                         productTitle = 'Camiseta Personalizada';
                         price = '12.99';
@@ -803,15 +827,15 @@
                         price = '9.99';
                         break;
                 }
-                
+
                 productName.textContent = productTitle;
                 basePrice.textContent = `${price}€`;
                 document.getElementById('total-price').textContent = `${price}€`;
-                
+
                 // Here we would also update the preview image
                 console.log(`Producto seleccionado: ${productTitle} a ${price}€`);
             });
-            
+
             // Update total price based on quantity
             function updateTotalPrice() {
                 const quantity = parseInt(document.getElementById('quantity').value);
@@ -819,23 +843,23 @@
                 const total = (quantity * basePrice).toFixed(2);
                 document.getElementById('total-price').textContent = `${total}€`;
             }
-            
+
             // Add to cart button
             const addToCartBtn = document.querySelector('.add-to-cart-btn');
-            addToCartBtn.addEventListener('click', function() {
+            addToCartBtn.addEventListener('click', function () {
                 const product = document.querySelector('.product-name').textContent;
                 const color = document.querySelector('.color-option.selected').getAttribute('data-color');
                 const material = document.querySelector('.material-option.selected').getAttribute('data-material');
                 const size = document.querySelector('.size-option.selected').getAttribute('data-size');
                 const quantity = document.getElementById('quantity').value;
-                
+
                 alert(`Producto añadido al carrito:
                     - ${product}
                     - Color: ${color}
                     - Material: ${material}
                     - Talla: ${size}
                     - Cantidad: ${quantity}`);
-                
+
                 // Update cart count
                 const cartCount = document.querySelector('.cart-count');
                 cartCount.textContent = parseInt(cartCount.textContent) + parseInt(quantity);
@@ -843,4 +867,5 @@
         });
     </script>
 </body>
+
 </html>
