@@ -563,13 +563,13 @@
                     </div>
                     <div class="step-card">
                         <div class="step-number">2</div>
-                        <h3 class="step-title">Añade al carrito</h3>
-                        <p>Revisa tu diseño, ajusta la cantidad y añade la prenda personalizada a tu carrito.</p>
+                        <h3 class="step-title">Pide tu presupuesto</h3>
+                        <p>Revisa tu diseño, ajusta la cantidad y pide tu presupuesto</p>
                     </div>
                     <div class="step-card">
                         <div class="step-number">3</div>
-                        <h3 class="step-title">Recibe</h3>
-                        <p>Nuestro equipo confeccionará tu prenda exactamente como la has diseñado y te la enviaremos.</p>
+                        <h3 class="step-title">Contacto</h3>
+                        <p>Nuestro equipo se pondra en contacto contigo para revisar todos los detalles.</p>
                     </div>
                 </div>
             </section>
@@ -584,7 +584,6 @@
                     <div class="product-details">
                         <h2 class="product-name">Camiseta Personalizada</h2>
                         <p class="product-desc">100% algodón, personalizable con tu diseño</p>
-                        <div class="price-tag">12.99€</div>
                     </div>
                 </div>
 
@@ -609,15 +608,10 @@
                         <!-- Color Selection -->
                         <div class="form-section">
                             <h3 class="form-section-title">Color</h3>
-                            <div class="color-options">
-                                <div class="color-option selected" style="background-color: #ffffff;" data-color="white"></div>
-                                <div class="color-option" style="background-color: #000000;" data-color="black"></div>
-                                <div class="color-option" style="background-color: #1E40AF;" data-color="blue"></div>
-                                <div class="color-option" style="background-color: #DC2626;" data-color="red"></div>
-                                <div class="color-option" style="background-color: #047857;" data-color="green"></div>
-                                <div class="color-option" style="background-color: #F59E0B;" data-color="yellow"></div>
-                            </div>
-                        </div>
+                            <input type="text" id="colorInput" placeholder="Escribe un color (ej: #FF0000 o red)">
+                            <div id="colorPreview" style="width: 50px; height: 50px; border: 1px solid #ccc; margin-top: 10px;"></div>
+                          </div>
+                          
                         
                         <!-- Material Selection -->
                         <div class="form-section">
@@ -676,11 +670,7 @@
                         
                         <!-- Submit Section -->
                         <div class="submit-section">
-                            <div class="total-price">
-                                <span>Total:</span>
-                                <span class="price-tag" id="total-price">12.99€</span>
-                            </div>
-                            <button type="button" class="add-to-cart-btn">Añadir al carrito</button>
+                            <button type="button" class="add-to-cart-btn">Pide tu presupuesto</button>
                         </div>
                     </form>
                 </div>
