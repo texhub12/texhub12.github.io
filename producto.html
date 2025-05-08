@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Texking - Detalle de Producto</title>
+    <style>
+        /* Reset básico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Header */
+        .header {
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-menu a {
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: #3b82f6;
+        }
+
+        .nav-menu a.active {
+            color: #3b82f6;
+            font-weight: bold;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .search-bar {
+            position: relative;
+        }
+
+        .search-bar input {
+            padding: 8px 35px 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            width: 200px;
+        }
+
+        .search-bar button {
+            position: absolute;
+            right: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .icon-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: #e53e3e;
+            color: white;
+            font-size: 10px;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Main content */
+        .main {
+            padding: 40px 0;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            display: flex;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .breadcrumb a {
+            color: #6b7280;
+        }
+
+        .breadcrumb span {
+            margin: 0 8px;
+            color: #9ca3af;
+        }
+
+        /* Product Detail */
+        .product-detail {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+
+        .product-detail-content {
+            display: flex;
+            gap: 40px;
+        }
+
+        .product-gallery {
+            flex: 1;
+            max-width: 500px;
+        }
+
+        .product-main-image {
+            width: 100%;
+            height: 500px;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+
+        .product-main-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-thumbnails {
+            display: flex;
+            gap: 10px;
+        }
+
+        .product-thumb {
+            width: 80px;
+            height: 80px;
+            border-radius: 4px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: border-color 0.3s;
+        }
+
+        .product-thumb.active {
+            border-color: #3b82f6;
+        }
+
+        .product-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-info {
+            flex: 1;
+        }
+
+        .product-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .product-category {
+            color: #6b7280;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .product-price {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .product-description {
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        /* Size Table */
+        .size-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 25px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .size-table th, .size-table td {
+            padding: 15px;
+            text-align: center;
+            border: 1px solid #e5e7eb;
+        }
+
+        .size-table th {
+            background-color: #f9fafb;
+            font-weight: 600;
+        }
+
+        .size-table tr:nth-child(even) {
+            background-color: #f9fafb;
+        }
+        
+        .tallas-section {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            margin-top: 30px;
+        }
+
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .quantity-btn {
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f3f4f6;
+            border: 1px solid #d1d5db;
+            cursor: pointer;
+            user-select: none;
+            font-size: 18px;
+        }
+
+        .quantity-btn:hover {
+            background-color: #e5e7eb;
+        }
+
+        .quantity-input {
+            width: 40px;
+            height: 30px;
+            text-align: center;
+            border: 1px solid #d1d5db;
+            margin: 0 5px;
+            font-size: 14px;
+        }
+
+        /* Action buttons */
+        .product-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .add-to-cart-btn {
+            padding: 12px 25px;
+            background-color: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            flex: 1;
+        }
+
+        .add-to-cart-btn:hover {
+            background-color: #2563eb;
+        }
+
+        .wholesale-note {
+            margin-top: 25px;
+            padding: 15px;
+            background-color: #f0f9ff;
+            border-left: 4px solid #3b82f6;
+            border-radius: 4px;
+        }
+
+        /* Product tabs */
+        .product-tabs {
+            margin-top: 40px;
+        }
+
+        .tab-buttons {
+            display: flex;
+            border-bottom: 1px solid #e5e7eb;
+            margin-bottom: 20px;
+        }
+
+        .tab-btn {
+            padding: 12px 20px;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .tab-btn.active {
+            border-bottom-color: #3b82f6;
+            color: #3b82f6;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 10px 0;
+            line-height: 1.8;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #1f2937;
+            color: white;
+            padding: 40px 0;
+            margin-top: 50px;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .footer-section h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #9ca3af;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .contact-info li {
+            color: #9ca3af;
+            margin-bottom: 10px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid #374151;
+            color: #9ca3af;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .product-detail-content {
+                flex-direction: column;
+            }
+
+            .product-gallery {
+                max-width: 100%;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .product-main-image {
+                height: 300px;
+            }
+
+            .product-thumbnails {
+                justify-content: center;
+            }
+
+            .size-table {
+                font-size: 14px;
+            }
+
+            .quantity-input {
+                width: 30px;
+            }
+
+            .product-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo">
+                <img src="imgs/logo.png" alt="" style="max-width: 150px;">
+            </div>
+
+            <nav class="nav-menu">
+                <a href="index.html" class="active">Catálogo</a>
+                <a href="mto.html">Made to Order</a>
+                <a href="https://texking.es/contacto/">Contacto</a>
+            </nav>
+
+            <div class="header-actions">
+                <div class="search-bar">
+                    <input type="text" placeholder="Buscar...">
+                    <button>🔍</button>
+                </div>
+
+                <button class="icon-button">
+                    <a href="perfil.html">👤</a>
+                </button>
+
+                <button class="icon-button">
+                    <a href="carrito.html">🛒</a>
+                    <span class="cart-count">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Breadcrumb -->
+            <div class="breadcrumb">
+                <a href="index.html">Inicio</a>
+                <span>></span>
+                <a href="index.html">Catálogo</a>
+                <span>></span>
+                <a href="#">Camisetas</a>
+                <span>></span>
+                <a href="#" style="color: #333; font-weight: 500;">Camiseta Básica Algodón</a>
+            </div>
+
+            <!-- Product Detail -->
+            <div class="product-detail">
+                <div class="product-detail-content">
+                    <!-- Product Gallery -->
+                    <div class="product-gallery">
+                        <div class="product-main-image">
+                            <img src="/api/placeholder/500/500" alt="Camiseta Básica Algodón">
+                        </div>
+                        <div class="product-thumbnails">
+                            <div class="product-thumb active">
+                                <img src="/api/placeholder/80/80" alt="Camiseta vista frontal">
+                            </div>
+                            <div class="product-thumb">
+                                <img src="/api/placeholder/80/80" alt="Camiseta vista trasera">
+                            </div>
+                            <div class="product-thumb">
+                                <img src="/api/placeholder/80/80" alt="Camiseta detalle">
+                            </div>
+                            <div class="product-thumb">
+                                <img src="/api/placeholder/80/80" alt="Camiseta variante color">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product Info -->
+                    <div class="product-info">
+                        <h1 class="product-title">Camiseta Básica Algodón</h1>
+                        <p class="product-category">Colección Algodón</p>
+                        <div class="product-price">1.15€ - 5.75€ / unidad</div>
+
+                        <div class="product-description">
+                            <p>Camiseta básica confeccionada en algodón 100% de alta calidad (180 g/m²). Ideal para uso diario o personalización. Disponible en múltiples colores y tallas desde XS hasta XXL. Acabado de alta calidad con doble costura en mangas y bajo.</p>
+                            <p>Perfecta para mayoristas, tiendas de ropa, empresas de merchandising o servicios de estampación. Precio escalonado por volumen de compra.</p>
+                        </div>
+
+                        <div class="wholesale-note">
+                            <p><strong>Nota para mayoristas:</strong> El precio unitario mostrado (1.15€) aplica para pedidos superiores a 500 unidades. Para pedidos entre 100-499 unidades, el precio es de 1.45€/unidad. Para pedidos entre 50-99 unidades, el precio es de 1.85€/unidad.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tallas Table Section - Full Width -->
+                <div class="tallas-section" style="margin-top: 40px;">
+                    <h2 class="section-title" style="margin-bottom: 20px; font-size: 22px; font-weight: 600;">Seleccione cantidades por talla:</h2>
+                    
+                    <table class="size-table">
+                        <thead>
+                            <tr>
+                                <th>Talla</th>
+                                <th>Cantidad</th>
+                                <th>Precio unitario</th>
+                                <th>Subtotal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>XS</td>
+                                <td>
+                                    <div class="quantity-selector">
+                                        <span class="quantity-btn minus" data-size="XS">-</span>
+                                        <input type="number" class="quantity-input" value="0" min="0" data-size="XS">
+                                        <span class="quantity-btn plus" data-size="XS">+</span>
+                                    </div>
+                                </td>
+                                <td>1.15€</td>
+                                <td class="subtotal" data-size="XS">0.00€</td>
+                            </tr>
+                            <tr>
+                                <td>S</td>
+                                <td>
+                                    <div class="quantity-selector">
+                                        <span class="quantity-btn minus" data-size="S">-</span>
+                                        <input type="number" class="quantity-input" value="0" min="0" data-size="S">
+                                        <span class="quantity-btn plus" data-size="S">+</span>
+                                    </div>
+                                </td>
+                                <td>1.15€</td>
+                                <td class="subtotal" data-size="S">0.00€</td>
+                            </tr>
+                            <tr>
+                                <td>M</td>
+                                <td>
+                                    <div class="quantity-selector">
+                                        <span class="quantity-btn minus" data-size="M">-</span>
+                                        <input type="number" class="quantity-input" value="0" min="0" data-size="M">
+                                        <span class="quantity-btn plus" data-size="M">+</span>
+                                    </div>
+                                </td>
+                                <td>1.15€</td>
+                                <td class="subtotal" data-size="M">0.00€</td>
+                            </tr>
+                            <tr>
+                                <td>L</td>
+                                <td>
+                                    <div class="quantity-selector">
+                                        <span class="quantity-btn minus" data-size="L">-</span>
+                                        <input type="number" class="quantity-input" value="0" min="0" data-size="L">
+                                        <span class="quantity-btn plus" data-size="L">+</span>
+                                    </div>
+                                </td>
+                                <td>1.15€</td>
+                                <td class="subtotal" data-size="L">0.00€</td>
+                            </tr>
+                            <tr>
+                                <td>XL</td>
+                                <td>
+                                    <div class="quantity-selector">
+                                        <span class="quantity-btn minus" data-size="XL">-</span>
+                                        <input type="number" class="quantity-input" value="0" min="0" data-size="XL">
+                                        <span class="quantity-btn plus" data-size="XL">+</span>
+                                    </div>
+                                </td>
+                                <td>1.15€</td>
+                                <td class="subtotal" data-size="XL">0.00€</td>
+                            </tr>
+                            <tr>
+                                <td>XXL</td>
+                                <td>
+                                    <div class="quantity-selector">
+                                        <span class="quantity-btn minus" data-size="XXL">-</span>
+                                        <input type="number" class="quantity-input" value="0" min="0" data-size="XXL">
+                                        <span class="quantity-btn plus" data-size="XXL">+</span>
+                                    </div>
+                                </td>
+                                <td>1.15€</td>
+                                <td class="subtotal" data-size="XXL">0.00€</td>
+                            </tr>
+                            <tr style="font-weight: bold; background-color: #f3f4f6;">
+                                <td colspan="2">Total</td>
+                                <td id="total-quantity">0 unidades</td>
+                                <td id="total-price">0.00€</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <div class="product-actions" style="margin-top: 25px; display: flex; justify-content: flex-end;">
+                        <button class="add-to-cart-btn" style="width: 250px;">Añadir al carrito</button>
+                    </div>
+                </div>
+
+                <!-- Product Tabs -->
+                <div class="product-tabs">
+                    <div class="tab-buttons">
+                        <div class="tab-btn active" data-tab="details">Detalles</div>
+                        <div class="tab-btn" data-tab="sizes">Guía de tallas</div>
+                        <div class="tab-btn" data-tab="shipping">Envío y devoluciones</div>
+                    </div>
+
+                    <div class="tab-content active" id="details-tab">
+                        <h3>Especificaciones del producto</h3>
+                        <ul style="padding-left: 20px; margin-top: 10px;">
+                            <li>Material: 100% algodón peinado</li>
+                            <li>Gramaje: 180 g/m²</li>
+                            <li>Cuello: Redondo reforzado con elastano</li>
+                            <li>Acabado: Doble costura en mangas y bajo</li>
+                            <li>Corte: Regular fit</li>
+                            <li>Colores disponibles: Negro, Blanco, Azul marino, Rojo, Verde, Gris melange</li>
+                            <li>Tallas disponibles: XS, S, M, L, XL, XXL</li>
+                            <li>Instrucciones de lavado: Lavado a máquina a 30°C</li>
+                            <li>Origen: Fabricado en España</li>
+                        </ul>
+                    </div>
+
+                    <div class="tab-content" id="sizes-tab">
+                        <h3>Guía de tallas (cm)</h3>
+                        <table class="size-table" style="margin-top: 15px;">
+                            <thead>
+                                <tr>
+                                    <th>Talla</th>
+                                    <th>Ancho (A)</th>
+                                    <th>Largo (B)</th>
+                                    <th>Manga (C)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>XS</td>
+                                    <td>46</td>
+                                    <td>65</td>
+                                    <td>17</td>
+                                </tr>
+                                <tr>
+                                    <td>S</td>
+                                    <td>49</td>
+                                    <td>68</td>
+                                    <td>18</td>
+                                </tr>
+                                <tr>
+                                    <td>M</td>
+                                    <td>52</td>
+                                    <td>70</td>
+                                    <td>19</td>
+                                </tr>
+                                <tr>
+                                    <td>L</td>
+                                    <td>55</td>
+                                    <td>72</td>
+                                    <td>20</td>
+                                </tr>
+                                <tr>
+                                    <td>XL</td>
+                                    <td>58</td>
+                                    <td>74</td>
+                                    <td>21</td>
+                                </tr>
+                                <tr>
+                                    <td>XXL</td>
+                                    <td>62</td>
+                                    <td>76</td>
+                                    <td>22</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p style="margin-top: 15px; font-style: italic;">Nota: Puede haber una variación de ±2cm en las medidas.</p>
+                    </div>
+
+                    <div class="tab-content" id="shipping-tab">
+                        <h3>Información de envío</h3>
+                        <p style="margin-top: 10px;">Para pedidos mayoristas, el plazo de entrega estimado es de 3-5 días laborables para productos en stock. Para pedidos personalizados o de gran volumen, consulte con nuestro departamento de ventas.</p>
+                        
+                        <h3 style="margin-top: 20px;">Política de devoluciones</h3>
+                        <p style="margin-top: 10px;">Aceptamos devoluciones de productos sin usar durante los 14 días posteriores a la recepción. Los gastos de devolución corren a cargo del cliente. Para iniciar una devolución, contacte con nuestro servicio de atención al cliente.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-section">
+                    <h3>TEXKING</h3>
+                    <p>Tu tienda de confianza para productos de calidad. Diseños únicos y personalizados.</p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Contacto</h3>
+                    <ul class="contact-info">
+                        <li>Email: info@texking.com</li>
+                        <li>Teléfono: +34 123 456 789</li>
+                        <li>Dirección: Calle Principal 123, Madrid</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 Texking. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tab functionality
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remove active class from all buttons and contents
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+
+                    // Add active class to clicked button
+                    button.classList.add('active');
+
+                    // Show corresponding content
+                    const tabId = button.getAttribute('data-tab');
+                    document.getElementById(`${tabId}-tab`).classList.add('active');
+                });
+            });
+
+            // Thumbnail gallery
+            const thumbnails = document.querySelectorAll('.product-thumb');
+            const mainImage = document.querySelector('.product-main-image img');
+
+            thumbnails.forEach(thumb => {
+                thumb.addEventListener('click', () => {
+                    // Remove active class from all thumbnails
+                    thumbnails.forEach(t => t.classList.remove('active'));
+                    
+                    // Add active class to clicked thumbnail
+                    thumb.classList.add('active');
+                    
+                    // Update main image (in a real implementation, you would change the src)
+                    // Here we're just simulating the change
+                    mainImage.setAttribute('alt', thumb.querySelector('img').getAttribute('alt'));
+                });
+            });
+
+            // Quantity selector functionality
+            const minusButtons = document.querySelectorAll('.quantity-btn.minus');
+            const plusButtons = document.querySelectorAll('.quantity-btn.plus');
+            const quantityInputs = document.querySelectorAll('.quantity-input');
+
+            // Function to update totals
+            function updateTotals() {
+                let totalQuantity = 0;
+                let totalPrice = 0;
+                const basePrice = 1.15;
+
+                quantityInputs.forEach(input => {
+                    const quantity = parseInt(input.value);
+                    totalQuantity += quantity;
+                    
+                    const size = input.getAttribute('data-size');
+                    const subtotal = quantity * basePrice;
+                    totalPrice += subtotal;
+                    
+                    // Update subtotal for this row
+                    const subtotalCell = document.querySelector(`.subtotal[data-size="${size}"]`);
+                    subtotalCell.textContent = subtotal.toFixed(2) + '€';
+                });
+
+                // Update total quantity and price
+                document.getElementById('total-quantity').textContent = totalQuantity + ' unidades';
+                document.getElementById('total-price').textContent = totalPrice.toFixed(2) + '€';
+            }
+
+            // Add event listeners to minus buttons
+            minusButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const size = button.getAttribute('data-size');
+                    const input = document.querySelector(`.quantity-input[data-size="${size}"]`);
+                    let value = parseInt(input.value);
+                    
+                    if (value > 0) {
+                        input.value = value - 1;
+                        updateTotals();
+                    }
+                });
+            });
+
+            // Add event listeners to plus buttons
+            plusButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const size = button.getAttribute('data-size');
+                    const input = document.querySelector(`.quantity-input[data-size="${size}"]`);
+                    let value = parseInt(input.value);
+                    
+                    input.value = value + 1;
+                    updateTotals();
+                });
+            });
+
+            // Add event listeners to inputs for direct number entry
+            quantityInputs.forEach(input => {
+                input.addEventListener('change', () => {
+                    // Ensure value is not negative
+                    if (parseInt(input.value) < 0) {
+                        input.value = 0;
+                    }
+                    
+                    updateTotals();
+                });
+            });
+
+            // Add to cart button
+            const addToCartBtn = document.querySelector('.add-to-cart-btn');
+            addToCartBtn.addEventListener('click', () => {
+                let totalQuantity = 0;
+                quantityInputs.forEach(input => {
+                    totalQuantity += parseInt(input.value);
+                });
+
+                if (totalQuantity > 0) {
+                    alert('Productos añadidos al carrito correctamente');
+                    
+                    // Update cart count (this would be more sophisticated in a real implementation)
+                    const cartCount = document.querySelector('.cart-count');
+                    cartCount.textContent = parseInt(cartCount.textContent) + totalQuantity;
+                } else {
+                    alert('Por favor, seleccione al menos una unidad para añadir al carrito');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

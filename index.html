@@ -737,6 +737,13 @@
                 arrow.textContent = sidebarFilters.classList.contains('active') ? '▲' : '▼';
             });
         });
+
+        document.querySelectorAll('.product-card').forEach(card => {
+            card.addEventListener('click', () => {
+                window.location.href = 'producto.html';
+            });
+        });
+
     </script>
 </body>
 
