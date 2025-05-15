@@ -159,10 +159,94 @@
             padding: 30px;
         }
 
+        /* — Contenedor flex de columnas — */
         .product-detail-content {
             display: flex;
             gap: 40px;
+            align-items: flex-start;
         }
+
+        /* — Selector de color — */
+        .product-color {
+            margin-bottom: 20px;
+        }
+
+        .product-color label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .product-color select {
+            width: 100%;
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 4px;
+        }
+
+        /* — Margen y estilo de la sección de tallas — */
+        .tallas-section {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            margin-top: 30px;
+        }
+
+        .tallas-section .section-title {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        /* — Fila de totales — */
+        .totals-row {
+            font-weight: bold;
+            background-color: #f3f4f6;
+        }
+
+        /* — Botón de acción — */
+        .product-actions {
+            display: flex;
+            gap: 16px;
+            /* espacio entre botones */
+            margin-top: 25px;
+        }
+
+        /* Ambos botones ocupan la misma proporción */
+        .product-actions button {
+            flex: 1;
+            /* cada botón ocupa igual espacio */
+            padding: 12px;
+            font-size: 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            border: none;
+        }
+
+        /* Estilo para “Añadir al carrito” */
+        .add-to-cart-btn {
+            background-color: #333;
+            color: #fff;
+        }
+
+        .add-to-cart-btn:hover {
+            background-color: #555;
+        }
+
+        /* Estilo para “Guía de tallas” */
+        .size-guide-btn {
+            background-color: #f3f4f6;
+            color: #333;
+            border: 1px solid #d1d5db;
+        }
+
+        .size-guide-btn:hover {
+            background-color: #e5e7eb;
+        }
+
+
 
         .product-gallery {
             flex: 1;
@@ -179,7 +263,7 @@
 
         .product-main-image img {
             width: 100%;
-            height: 100%;
+            height: 120%;
             object-fit: cover;
         }
 
@@ -243,7 +327,23 @@
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         }
 
-        .size-table th, .size-table td {
+        /* Select dentro de la tabla de tallas */
+        .size-table select.color-select {
+            width: 100%;
+            padding: 8px;
+            font-size: 0.95rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 4px;
+            background-color: #fff;
+            appearance: none;
+            /* quita flecha por defecto en algunos navegadores */
+            -webkit-appearance: none;
+            -moz-appearance: none;
+        }
+
+
+        .size-table th,
+        .size-table td {
             padding: 15px;
             text-align: center;
             border: 1px solid #e5e7eb;
@@ -257,7 +357,7 @@
         .size-table tr:nth-child(even) {
             background-color: #f9fafb;
         }
-        
+
         .tallas-section {
             background-color: white;
             border-radius: 8px;
@@ -462,7 +562,6 @@
             <nav class="nav-menu">
                 <a href="index.html" class="active">Catálogo</a>
                 <a href="mto.html">Made to Order</a>
-                <a href="https://texking.es/contacto/">Contacto</a>
             </nav>
 
             <div class="header-actions">
@@ -500,7 +599,7 @@
             <!-- Product Detail -->
             <div class="product-detail">
                 <div class="product-detail-content">
-                    <!-- Product Gallery -->
+                    <!-- COLUMNA IZQUIERDA: Galería -->
                     <div class="product-gallery">
                         <div class="product-main-image">
                             <img src="imgs/Page 4 Dacca.jpg" alt="Camiseta Básica Algodón">
@@ -521,51 +620,53 @@
                         </div>
                     </div>
 
-                    <!-- Product Info -->
+                    <!-- COLUMNA DERECHA: Info + selector de color -->
                     <div class="product-info">
                         <h1 class="product-title">Camiseta Básica Algodón</h1>
                         <p class="product-category">Colección Algodón</p>
                         <div class="product-price">1.15€ - 5.75€ / unidad</div>
 
                         <div class="product-description">
-                            <p>Camiseta básica confeccionada en algodón 100% de alta calidad (180 g/m²). Ideal para uso diario o personalización. Disponible en múltiples colores y tallas desde XS hasta XXL. Acabado de alta calidad con doble costura en mangas y bajo.</p>
-                            <p>Perfecta para mayoristas, tiendas de ropa, empresas de merchandising o servicios de estampación. Precio escalonado por volumen de compra.</p>
+                            <p>Camiseta básica confeccionada en algodón 100% de alta calidad (180 g/m²). Ideal para uso
+                                diario o personalización. Disponible en múltiples colores y tallas desde XS hasta XXL.
+                                Acabado de alta calidad con doble costura en mangas y bajo.</p>
+                            <p>Perfecta para mayoristas, tiendas de ropa, empresas de merchandising o servicios de
+                                estampación. Precio escalonado por volumen de compra.</p>
                         </div>
 
+                       
                     </div>
-                </div>
-                
-                <!-- Tallas Table Section - Full Width -->
-                <div class="tallas-section" style="margin-top: 40px;">
-                    <h2 class="section-title" style="margin-bottom: 20px; font-size: 22px; font-weight: 600;">Seleccione cantidades por talla:</h2>
-                    
+                </div> <!-- .product-detail-content -->
+
+                <!-- TABLA DE TALLAS (S–4XL) -->
+                <div class="tallas-section">
+                    <h2 class="section-title">Seleccione cantidades por talla:</h2>
                     <table class="size-table">
                         <thead>
                             <tr>
                                 <th>Talla</th>
+                                <th>Color</th>
                                 <th>Cantidad</th>
                                 <th>Precio unitario</th>
                                 <th>Subtotal</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>XS</td>
-                                <td>
-                                    <div class="quantity-selector">
-                                        <span class="quantity-btn minus" data-size="XS">-</span>
-                                        <input type="number" class="quantity-input" value="0" min="0" data-size="XS">
-                                        <span class="quantity-btn plus" data-size="XS">+</span>
-                                    </div>
-                                </td>
-                                <td>1.15€</td>
-                                <td class="subtotal" data-size="XS">0.00€</td>
-                            </tr>
+                            <!-- FILA S -->
                             <tr>
                                 <td>S</td>
                                 <td>
+                                    <select class="color-select" name="color-S" data-size="S">
+                                        <option value="">Selecciona</option>
+                                        <option value="negro">Negro</option>
+                                        <option value="blanco">Blanco</option>
+                                        <option value="azul">Azul</option>
+                                        <option value="rojo">Rojo</option>
+                                    </select>
+                                </td>
+                                <td>
                                     <div class="quantity-selector">
-                                        <span class="quantity-btn minus" data-size="S">-</span>
+                                        <span class="quantity-btn minus" data-size="S">−</span>
                                         <input type="number" class="quantity-input" value="0" min="0" data-size="S">
                                         <span class="quantity-btn plus" data-size="S">+</span>
                                     </div>
@@ -573,11 +674,22 @@
                                 <td>1.15€</td>
                                 <td class="subtotal" data-size="S">0.00€</td>
                             </tr>
+
+                            <!-- FILA M -->
                             <tr>
                                 <td>M</td>
                                 <td>
+                                    <select class="color-select" name="color-M" data-size="M">
+                                        <option value="">Selecciona</option>
+                                        <option value="negro">Negro</option>
+                                        <option value="blanco">Blanco</option>
+                                        <option value="azul">Azul</option>
+                                        <option value="rojo">Rojo</option>
+                                    </select>
+                                </td>
+                                <td>
                                     <div class="quantity-selector">
-                                        <span class="quantity-btn minus" data-size="M">-</span>
+                                        <span class="quantity-btn minus" data-size="M">−</span>
                                         <input type="number" class="quantity-input" value="0" min="0" data-size="M">
                                         <span class="quantity-btn plus" data-size="M">+</span>
                                     </div>
@@ -585,11 +697,22 @@
                                 <td>1.15€</td>
                                 <td class="subtotal" data-size="M">0.00€</td>
                             </tr>
+
+                            <!-- FILA L -->
                             <tr>
                                 <td>L</td>
                                 <td>
+                                    <select class="color-select" name="color-L" data-size="L">
+                                        <option value="">Selecciona</option>
+                                        <option value="negro">Negro</option>
+                                        <option value="blanco">Blanco</option>
+                                        <option value="azul">Azul</option>
+                                        <option value="rojo">Rojo</option>
+                                    </select>
+                                </td>
+                                <td>
                                     <div class="quantity-selector">
-                                        <span class="quantity-btn minus" data-size="L">-</span>
+                                        <span class="quantity-btn minus" data-size="L">−</span>
                                         <input type="number" class="quantity-input" value="0" min="0" data-size="L">
                                         <span class="quantity-btn plus" data-size="L">+</span>
                                     </div>
@@ -597,11 +720,22 @@
                                 <td>1.15€</td>
                                 <td class="subtotal" data-size="L">0.00€</td>
                             </tr>
+
+                            <!-- FILA XL -->
                             <tr>
                                 <td>XL</td>
                                 <td>
+                                    <select class="color-select" name="color-XL" data-size="XL">
+                                        <option value="">Selecciona</option>
+                                        <option value="negro">Negro</option>
+                                        <option value="blanco">Blanco</option>
+                                        <option value="azul">Azul</option>
+                                        <option value="rojo">Rojo</option>
+                                    </select>
+                                </td>
+                                <td>
                                     <div class="quantity-selector">
-                                        <span class="quantity-btn minus" data-size="XL">-</span>
+                                        <span class="quantity-btn minus" data-size="XL">−</span>
                                         <input type="number" class="quantity-input" value="0" min="0" data-size="XL">
                                         <span class="quantity-btn plus" data-size="XL">+</span>
                                     </div>
@@ -609,107 +743,93 @@
                                 <td>1.15€</td>
                                 <td class="subtotal" data-size="XL">0.00€</td>
                             </tr>
+
+                            <!-- FILA 2XL -->
                             <tr>
-                                <td>XXL</td>
+                                <td>2XL</td>
+                                <td>
+                                    <select class="color-select" name="color-2XL" data-size="2XL">
+                                        <option value="">Selecciona</option>
+                                        <option value="negro">Negro</option>
+                                        <option value="blanco">Blanco</option>
+                                        <option value="azul">Azul</option>
+                                        <option value="rojo">Rojo</option>
+                                    </select>
+                                </td>
                                 <td>
                                     <div class="quantity-selector">
-                                        <span class="quantity-btn minus" data-size="XXL">-</span>
-                                        <input type="number" class="quantity-input" value="0" min="0" data-size="XXL">
-                                        <span class="quantity-btn plus" data-size="XXL">+</span>
+                                        <span class="quantity-btn minus" data-size="2XL">−</span>
+                                        <input type="number" class="quantity-input" value="0" min="0" data-size="2XL">
+                                        <span class="quantity-btn plus" data-size="2XL">+</span>
                                     </div>
                                 </td>
                                 <td>1.15€</td>
-                                <td class="subtotal" data-size="XXL">0.00€</td>
+                                <td class="subtotal" data-size="2XL">0.00€</td>
                             </tr>
-                            <tr style="font-weight: bold; background-color: #f3f4f6;">
-                                <td colspan="2">Total</td>
+
+                            <!-- FILA 3XL -->
+                            <tr>
+                                <td>3XL</td>
+                                <td>
+                                    <select class="color-select" name="color-3XL" data-size="3XL">
+                                        <option value="">Selecciona</option>
+                                        <option value="negro">Negro</option>
+                                        <option value="blanco">Blanco</option>
+                                        <option value="azul">Azul</option>
+                                        <option value="rojo">Rojo</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <div class="quantity-selector">
+                                        <span class="quantity-btn minus" data-size="3XL">−</span>
+                                        <input type="number" class="quantity-input" value="0" min="0" data-size="3XL">
+                                        <span class="quantity-btn plus" data-size="3XL">+</span>
+                                    </div>
+                                </td>
+                                <td>1.15€</td>
+                                <td class="subtotal" data-size="3XL">0.00€</td>
+                            </tr>
+
+                            <!-- FILA 4XL -->
+                            <tr>
+                                <td>4XL</td>
+                                <td>
+                                    <select class="color-select" name="color-4XL" data-size="4XL">
+                                        <option value="">Selecciona</option>
+                                        <option value="negro">Negro</option>
+                                        <option value="blanco">Blanco</option>
+                                        <option value="azul">Azul</option>
+                                        <option value="rojo">Rojo</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <div class="quantity-selector">
+                                        <span class="quantity-btn minus" data-size="4XL">−</span>
+                                        <input type="number" class="quantity-input" value="0" min="0" data-size="4XL">
+                                        <span class="quantity-btn plus" data-size="4XL">+</span>
+                                    </div>
+                                </td>
+                                <td>1.15€</td>
+                                <td class="subtotal" data-size="4XL">0.00€</td>
+                            </tr>
+
+                            <!-- FILA DE TOTALES -->
+                            <tr class="totals-row">
+                                <td colspan="3">Total</td>
                                 <td id="total-quantity">0 unidades</td>
                                 <td id="total-price">0.00€</td>
                             </tr>
                         </tbody>
                     </table>
-                    
-                    <div class="product-actions" style="margin-top: 25px; display: flex; justify-content: flex-end;">
-                        <button class="add-to-cart-btn" style="width: 250px;">Añadir al carrito</button>
-                    </div>
-                </div>
 
-                <!-- Product Tabs -->
-                <div class="product-tabs">
-                    <div class="tab-buttons">
-                        <div class="tab-btn active" data-tab="details">Detalles</div>
-                        <div class="tab-btn" data-tab="sizes">Guía de tallas</div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Añadir al carrito</button>
+                        <button class="size-guide-btn">Guía de tallas</button>
                     </div>
 
-                    <div class="tab-content active" id="details-tab">
-                        <h3>Especificaciones del producto</h3>
-                        <ul style="padding-left: 20px; margin-top: 10px;">
-                            <li>Material: 100% algodón peinado</li>
-                            <li>Gramaje: 180 g/m²</li>
-                            <li>Cuello: Redondo reforzado con elastano</li>
-                            <li>Acabado: Doble costura en mangas y bajo</li>
-                            <li>Corte: Regular fit</li>
-                            <li>Colores disponibles: Negro, Blanco, Azul marino, Rojo, Verde, Gris melange</li>
-                            <li>Tallas disponibles: XS, S, M, L, XL, XXL</li>
-                            <li>Instrucciones de lavado: Lavado a máquina a 30°C</li>
-                            <li>Origen: Fabricado en España</li>
-                        </ul>
-                    </div>
-
-                    <div class="tab-content" id="sizes-tab">
-                        <h3>Guía de tallas (cm)</h3>
-                        <table class="size-table" style="margin-top: 15px;">
-                            <thead>
-                                <tr>
-                                    <th>Talla</th>
-                                    <th>Ancho (A)</th>
-                                    <th>Largo (B)</th>
-                                    <th>Manga (C)</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>XS</td>
-                                    <td>46</td>
-                                    <td>65</td>
-                                    <td>17</td>
-                                </tr>
-                                <tr>
-                                    <td>S</td>
-                                    <td>49</td>
-                                    <td>68</td>
-                                    <td>18</td>
-                                </tr>
-                                <tr>
-                                    <td>M</td>
-                                    <td>52</td>
-                                    <td>70</td>
-                                    <td>19</td>
-                                </tr>
-                                <tr>
-                                    <td>L</td>
-                                    <td>55</td>
-                                    <td>72</td>
-                                    <td>20</td>
-                                </tr>
-                                <tr>
-                                    <td>XL</td>
-                                    <td>58</td>
-                                    <td>74</td>
-                                    <td>21</td>
-                                </tr>
-                                <tr>
-                                    <td>XXL</td>
-                                    <td>62</td>
-                                    <td>76</td>
-                                    <td>22</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <p style="margin-top: 15px; font-style: italic;">Nota: Puede haber una variación de ±2cm en las medidas.</p>
-                    </div>
                 </div>
             </div>
+
         </div>
     </main>
 
@@ -740,7 +860,7 @@
 
     <!-- JavaScript -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Tab functionality
             const tabButtons = document.querySelectorAll('.tab-btn');
             const tabContents = document.querySelectorAll('.tab-content');
@@ -768,10 +888,10 @@
                 thumb.addEventListener('click', () => {
                     // Remove active class from all thumbnails
                     thumbnails.forEach(t => t.classList.remove('active'));
-                    
+
                     // Add active class to clicked thumbnail
                     thumb.classList.add('active');
-                    
+
                     // Update main image (in a real implementation, you would change the src)
                     // Here we're just simulating the change
                     mainImage.setAttribute('alt', thumb.querySelector('img').getAttribute('alt'));
@@ -792,11 +912,11 @@
                 quantityInputs.forEach(input => {
                     const quantity = parseInt(input.value);
                     totalQuantity += quantity;
-                    
+
                     const size = input.getAttribute('data-size');
                     const subtotal = quantity * basePrice;
                     totalPrice += subtotal;
-                    
+
                     // Update subtotal for this row
                     const subtotalCell = document.querySelector(`.subtotal[data-size="${size}"]`);
                     subtotalCell.textContent = subtotal.toFixed(2) + '€';
@@ -813,7 +933,7 @@
                     const size = button.getAttribute('data-size');
                     const input = document.querySelector(`.quantity-input[data-size="${size}"]`);
                     let value = parseInt(input.value);
-                    
+
                     if (value > 0) {
                         input.value = value - 1;
                         updateTotals();
@@ -827,7 +947,7 @@
                     const size = button.getAttribute('data-size');
                     const input = document.querySelector(`.quantity-input[data-size="${size}"]`);
                     let value = parseInt(input.value);
-                    
+
                     input.value = value + 1;
                     updateTotals();
                 });
@@ -840,7 +960,7 @@
                     if (parseInt(input.value) < 0) {
                         input.value = 0;
                     }
-                    
+
                     updateTotals();
                 });
             });
@@ -855,7 +975,7 @@
 
                 if (totalQuantity > 0) {
                     alert('Productos añadidos al carrito correctamente');
-                    
+
                     // Update cart count (this would be more sophisticated in a real implementation)
                     const cartCount = document.querySelector('.cart-count');
                     cartCount.textContent = parseInt(cartCount.textContent) + totalQuantity;

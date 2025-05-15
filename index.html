@@ -348,6 +348,17 @@
             color: #9ca3af;
         }
 
+        .filter-group select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 12px;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+
+
         /* Toggle for mobile sidebar */
         .sidebar-toggle {
             display: none;
@@ -438,7 +449,6 @@
             <nav class="nav-menu">
                 <a href="index.html" class="active">Catálogo</a>
                 <a href="mto.html">Made to Order</a>
-                <a href="https://texking.es/contacto/">Contacto</a>
             </nav>
 
             <div class="header-actions">
@@ -491,68 +501,49 @@
                                 </div>
                             </div>
 
-                            <div class="filter-group">
-                                <h3 class="filter-group-title">Precio</h3>
-                                <div class="filter-option">
-                                    <input type="checkbox" id="price-0-25" name="price">
-                                    <label for="price-0-25"></label>1.15 - 5.75€</label>
-                                </div>
-                                <div class="filter-option">
-                                    <input type="checkbox" id="price-25-50" name="price">
-                                    <label for="price-25-50">1.15 - 5.75€</label>
-                                </div>
-                            </div>
 
                             <div class="filter-group">
                                 <h3 class="filter-group-title">Color</h3>
-                                <div class="filter-option">
-                                    <input type="checkbox" id="color-negro" name="color">
-                                    <label for="color-negro">Negro</label>
-                                </div>
-                                <div class="filter-option">
-                                    <input type="checkbox" id="color-blanco" name="color">
-                                    <label for="color-blanco">Blanco</label>
-                                </div>
-                                <div class="filter-option">
-                                    <input type="checkbox" id="color-azul" name="color">
-                                    <label for="color-azul">Azul</label>
-                                </div>
-                                <div class="filter-option">
-                                    <input type="checkbox" id="color-rojo" name="color">
-                                    <label for="color-rojo">Rojo</label>
-                                </div>
-                                <div class="filter-option">
-                                    <input type="checkbox" id="color-verde" name="color">
-                                    <label for="color-verde">Verde</label>
-                                </div>
+                                <select id="color-select" name="color">
+                                    <option value="">Selecciona color</option>
+                                    <option value="negro">Negro</option>
+                                    <option value="blanco">Blanco</option>
+                                    <option value="azul">Azul</option>
+                                    <option value="rojo">Rojo</option>
+                                    <option value="verde">Verde</option>
+                                </select>
                             </div>
 
+
                             <div class="filter-group">
-                                <h3 class="filter-group-title">Talla</h3>
-                                <div class="filter-option">
-                                    <input type="checkbox" id="size-xs" name="size">
-                                    <label for="size-xs">XS</label>
-                                </div>
-                                <div class="filter-option">
-                                    <input type="checkbox" id="size-s" name="size">
-                                    <label for="size-s">S</label>
-                                </div>
-                                <div class="filter-option">
-                                    <input type="checkbox" id="size-m" name="size">
-                                    <label for="size-m">M</label>
-                                </div>
-                                <div class="filter-option">
-                                    <input type="checkbox" id="size-l" name="size">
-                                    <label for="size-l">L</label>
-                                </div>
-                                <div class="filter-option">
-                                    <input type="checkbox" id="size-xl" name="size">
-                                    <label for="size-xl">XL</label>
-                                </div>
-                                <div class="filter-option">
-                                    <input type="checkbox" id="size-xxl" name="size">
-                                    <label for="size-xxl">XXL</label>
-                                </div>
+                                <h3 class="filter-group-title">Talla Niños</h3>
+                                <select id="size-children-select" name="size-children">
+                                    <option value="">Selecciona talla</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                    <option value="13">13</option>
+                                    <option value="14">14</option>
+                                </select>
+                            </div>
+                            <div class="filter-group">
+                                <h3 class="filter-group-title">Talla Adultos</h3>
+                                <select id="size-adult-select" name="size-adult">
+                                    <option value="">Selecciona talla</option>
+                                    <option value="s">S</option>
+                                    <option value="m">M</option>
+                                    <option value="l">L</option>
+                                    <option value="xl">XL</option>
+                                    <option value="2xl">2XL</option>
+                                    <option value="3xl">3XL</option>
+                                    <option value="4xl">4XL</option>
+                                </select>
                             </div>
 
                             <button class="clear-filters">Limpiar filtros</button>

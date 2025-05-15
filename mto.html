@@ -360,65 +360,83 @@
             border-color: #3b82f6;
         }
 
-        .size-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            margin-top: 10px;
+        /* Contenedor combinado de talla, cantidad y añadir */
+        .size-selector-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+            margin-bottom: 20px;
         }
 
-        .size-option {
-            text-align: center;
-            padding: 10px;
-            border: 1px solid #ddd;
+        /* Estilo del select de tallas */
+        .size-selector-section select {
+            flex: 1 1 150px;
+            padding: 8px;
+            font-size: 1rem;
+            border: 1px solid #e5e7eb;
             border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.2s;
+            background-color: #fff;
         }
 
-        .size-option:hover,
-        .size-option.selected {
-            background-color: #3b82f6;
-            color: white;
-            border-color: #3b82f6;
-        }
-
+        /* Selector de cantidad */
         .quantity-selector {
             display: flex;
             align-items: center;
-            width: fit-content;
         }
 
-        .quantity-btn {
+        .quantity-selector button {
             width: 32px;
             height: 32px;
-            background-color: #f5f5f5;
-            border: 1px solid #ddd;
-            font-size: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            font-size: 1.2rem;
+            border: 1px solid #d1d5db;
+            background-color: #f3f4f6;
             cursor: pointer;
-            user-select: none;
+            border-radius: 4px;
         }
 
-        .quantity-btn:first-child {
-            border-radius: 4px 0 0 4px;
-        }
-
-        .quantity-btn:last-child {
-            border-radius: 0 4px 4px 0;
-        }
-
-        .quantity-input {
+        .quantity-selector input {
             width: 50px;
-            height: 32px;
             text-align: center;
-            border: 1px solid #ddd;
-            border-left: none;
-            border-right: none;
-            font-size: 16px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            margin: 0 6px;
+            font-size: 1rem;
         }
+
+        /* Botón Añadir */
+        #add-size-btn {
+            padding: 8px 16px;
+            background-color: #3b82f6;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #add-size-btn:hover {
+            background-color: #2563eb;
+        }
+
+        /* Historial */
+        .size-history-section table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 12px;
+        }
+
+        .size-history-section th,
+        .size-history-section td {
+            border: 1px solid #e5e7eb;
+            padding: 8px;
+            text-align: center;
+        }
+
+        .size-history-section th {
+            background-color: #f9fafb;
+            font-weight: 600;
+        }
+
 
         .file-upload {
             margin-top: 10px;
@@ -446,28 +464,41 @@
 
         .submit-section {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid #eee;
+            gap: 16px;
+            margin-top: 20px;
         }
 
+        /* Que cada botón ocupe la mitad */
+        .submit-section button {
+            flex: 1;
+            padding: 12px;
+            font-size: 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            border: none;
+        }
+
+        /* Estilo “Pide tu presupuesto” */
         .add-to-cart-btn {
             background-color: #3b82f6;
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 4px;
-            font-size: 16px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: background-color 0.3s;
+            color: #fff;
         }
 
         .add-to-cart-btn:hover {
             background-color: #2563eb;
         }
+
+        /* Estilo “Descargar PDF” */
+        .download-pdf-btn {
+            background-color: #f3f4f6;
+            color: #333;
+            border: 1px solid #d1d5db;
+        }
+
+        .download-pdf-btn:hover {
+            background-color: #e5e7eb;
+        }
+
 
         .instructions-section {
             background-color: white;
@@ -515,6 +546,39 @@
             margin-bottom: 10px;
         }
 
+        /* — Opciones como botones — */
+        .logo-options,
+        .mode-options {
+            display: flex;
+            gap: 10px;
+            margin-top: 8px;
+        }
+
+        .logo-option-btn,
+        .mode-option-btn {
+            padding: 8px 16px;
+            font-size: 1rem;
+            border: 1px solid #e5e7eb;
+            background-color: #fff;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color .2s, border-color .2s;
+        }
+
+        .logo-option-btn:hover,
+        .mode-option-btn:hover {
+            background-color: #f3f4f6;
+        }
+
+        /* Estado seleccionado */
+        .logo-option-btn.active,
+        .mode-option-btn.active {
+            background-color: #3b82f6;
+            border-color: #3b82f6;
+            color: #fff;
+        }
+
+
         @media (max-width: 768px) {
             .customizer-container {
                 grid-template-columns: 1fr;
@@ -542,7 +606,6 @@
             <nav class="nav-menu">
                 <a href="index.html">Catálogo</a>
                 <a href="mto.html" class="active">Made to Order</a>
-                <a href="https://texking.es/contacto/">Contacto</a>
             </nav>
 
             <div class="header-actions">
@@ -607,6 +670,25 @@
                     <div class="product-details">
                         <h2 class="product-name">Camiseta Personalizada</h2>
                         <p class="product-desc">100% algodón, personalizable con tu diseño</p>
+                        <!-- Ubicación del logo -->
+                        <div class="form-section logo-position-section">
+                            <h3 class="form-section-title">Ubicación del logo</h3>
+                            <div class="logo-options">
+                                <button type="button" class="logo-option-btn" data-position="adelante">Adelante</button>
+                                <button type="button" class="logo-option-btn" data-position="detras">Detrás</button>
+                                <button type="button" class="logo-option-btn" data-position="ambos">Ambos lados</button>
+                            </div>
+                        </div>
+
+                        <!-- Modo de personalización -->
+                        <div class="form-section print-mode-section">
+                            <h3 class="form-section-title">Tipo</h3>
+                            <div class="mode-options">
+                                <button type="button" class="mode-option-btn" data-mode="estampado">Estampado</button>
+                                <button type="button" class="mode-option-btn" data-mode="bordado">Bordado</button>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 
@@ -630,44 +712,78 @@
 
                         <!-- Color Selection -->
                         <div class="form-section">
-                            <h3 class="form-section-title">Color</h3>
+                            <h3 class="form-section-title">Material</h3>
                             <input type="text" id="colorInput" placeholder="Escribe un color">
                         </div>
 
 
                         <!-- Material Selection -->
                         <div class="form-section">
-                            <h3 class="form-section-title">Material</h3>
-                            <div class="material-options">
-                                <div class="material-option selected" data-material="cotton">Algodón</div>
-                                <div class="material-option" data-material="polyester">Poliéster</div>
-                                <div class="material-option" data-material="blend">Mezcla</div>
-                                <div class="material-option" data-material="organic">Orgánico</div>
-                            </div>
+                            <h3 class="form-section-title">Color</h3>
+                            <input type="text" id="colorInput" placeholder="Escribe un color">
                         </div>
 
                         <!-- Size Selection -->
+                        <!-- === Sección Talla + Cantidad === -->
                         <div class="form-section">
-                            <h3 class="form-section-title">Talla</h3>
-                            <div class="size-grid">
-                                <div class="size-option" data-size="XS">XS</div>
-                                <div class="size-option" data-size="S">S</div>
-                                <div class="size-option selected" data-size="M">M</div>
-                                <div class="size-option" data-size="L">L</div>
-                                <div class="size-option" data-size="XL">XL</div>
-                                <div class="size-option" data-size="XXL">XXL</div>
+                            <h3 class="form-section-title">Talla y Cantidad</h3>
+                            <div class="size-selector-section">
+                                <!-- Desplegable de tallas -->
+                                <select id="size-select" name="size">
+                                    <option value="">Selecciona talla</option>
+                                    <optgroup label="Niño">
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                        <option value="13">13</option>
+                                        <option value="14">14</option>
+                                    </optgroup>
+                                    <optgroup label="Adulto">
+                                        <option value="XS">XS</option>
+                                        <option value="S">S</option>
+                                        <option value="M">M</option>
+                                        <option value="L">L</option>
+                                        <option value="XL">XL</option>
+                                        <option value="2XL">2XL</option>
+                                        <option value="3XL">3XL</option>
+                                        <option value="4XL">4XL</option>
+                                    </optgroup>
+                                </select>
+
+                                <!-- Selector de cantidad -->
+                                <div class="quantity-selector">
+                                    <button type="button" id="decrease-quantity">−</button>
+                                    <input type="number" id="quantity" name="quantity" value="1" min="1">
+                                    <button type="button" id="increase-quantity">+</button>
+                                </div>
+
+                                <!-- Botón Añadir -->
+                                <button type="button" id="add-size-btn">Añadir</button>
                             </div>
                         </div>
 
-                        <!-- Quantity -->
-                        <div class="form-section">
-                            <h3 class="form-section-title">Cantidad</h3>
-                            <div class="quantity-selector">
-                                <div class="quantity-btn" id="decrease-quantity">-</div>
-                                <input type="text" class="quantity-input" id="quantity" value="1" readonly>
-                                <div class="quantity-btn" id="increase-quantity">+</div>
-                            </div>
+                        <!-- === Historial de selecciones === -->
+                        <div class="form-section size-history-section">
+                            <h3 class="form-section-title">Historial de tallas</h3>
+                            <table id="size-history-table">
+                                <thead>
+                                    <tr>
+                                        <th>Talla</th>
+                                        <th>Cantidad</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Filas inyectadas vía JS -->
+                                </tbody>
+                            </table>
                         </div>
+
 
                         <!-- Custom Design Upload -->
                         <div class="form-section">
@@ -693,9 +809,12 @@
                         </div>
 
                         <!-- Submit Section -->
+                        <!-- Submit Section -->
                         <div class="submit-section">
                             <button type="button" class="add-to-cart-btn">Pide tu presupuesto</button>
+                            <button type="button" class="download-pdf-btn">Descargar PDF</button>
                         </div>
+
                     </form>
                 </div>
             </div>
@@ -866,6 +985,72 @@
             });
         });
     </script>
+    <script>
+        const decreaseBtn = document.getElementById('decrease-quantity');
+        const increaseBtn = document.getElementById('increase-quantity');
+        const qtyInput = document.getElementById('quantity');
+        const sizeSelect = document.getElementById('size-select');
+        const addBtn = document.getElementById('add-size-btn');
+        const historyTbody = document.querySelector('#size-history-table tbody');
+
+        decreaseBtn.addEventListener('click', () => {
+            let val = parseInt(qtyInput.value, 10);
+            if (val > 1) qtyInput.value = val - 1;
+        });
+        increaseBtn.addEventListener('click', () => {
+            qtyInput.value = parseInt(qtyInput.value, 10) + 1;
+        });
+
+        addBtn.addEventListener('click', () => {
+            const talla = sizeSelect.value;
+            const cantidad = parseInt(qtyInput.value, 10);
+            if (!talla) {
+                alert('Selecciona primero una talla.');
+                return;
+            }
+            if (cantidad < 1) {
+                alert('La cantidad debe ser al menos 1.');
+                return;
+            }
+            // Crear fila y añadir al historial
+            const tr = document.createElement('tr');
+            tr.innerHTML = `<td>${talla}</td><td>${cantidad}</td>`;
+            historyTbody.appendChild(tr);
+            // Reset
+            sizeSelect.value = '';
+            qtyInput.value = 1;
+        });
+    </script>
+    <script>
+        // Logo position
+        document.querySelectorAll('.logo-option-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.logo-option-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                // aquí podrías, por ejemplo:
+                // const pos = btn.dataset.position;
+                // actualizar la vista previa según pos...
+            });
+        });
+
+        // Print mode
+        document.querySelectorAll('.mode-option-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.mode-option-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                // const modo = btn.dataset.mode;
+                // usar modo para cambiar preview o guardar en el formulario...
+            });
+        });
+    </script>
+    <script>
+        document.querySelector('.download-pdf-btn').addEventListener('click', () => {
+            // Aquí iría la lógica de generación/descarga de tu PDF.
+            alert('Funcionalidad de descarga de PDF aún por implementar.');
+        });
+    </script>
+
+
 </body>
 
 </html>
