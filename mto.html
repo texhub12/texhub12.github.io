@@ -137,7 +137,7 @@
 
         /* Footer */
         .footer {
-            background-color: #1f2937;
+            background-color: #5d6166;
             color: white;
             padding: 40px 0;
             margin-top: 50px;
@@ -159,7 +159,7 @@
         }
 
         .footer-links a {
-            color: #9ca3af;
+            color: #ffffff;
             transition: color 0.3s;
         }
 
@@ -168,7 +168,7 @@
         }
 
         .contact-info li {
-            color: #9ca3af;
+            color: #ffffff;
             margin-bottom: 10px;
         }
 
@@ -177,7 +177,7 @@
             padding-top: 30px;
             margin-top: 30px;
             border-top: 1px solid #374151;
-            color: #9ca3af;
+            color: #ffffff;
         }
 
         /* Made to Order styles */
@@ -462,6 +462,60 @@
             color: #6b7280;
         }
 
+        .logo-option-select,
+        .mode-option-select {
+            width: 100%;
+            padding: 0.6em 1em;
+            font-size: 1rem;
+            line-height: 1.4;
+            color: #333;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg width='10' height='6' viewBox='0 0 10 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23666'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1em center;
+            background-size: 0.6em auto;
+            cursor: pointer;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            box-sizing: border-box;
+        }
+
+        .logo-option-select:hover,
+        .mode-option-select:hover {
+            border-color: #999;
+        }
+
+        .logo-option-select:focus,
+        .mode-option-select:focus {
+            border-color: #66afe9;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(102, 175, 233, 0.3);
+        }
+
+        .logo-position-section,
+        .print-mode-section {
+            position: relative;
+        }
+
+        .logo-option-select,
+        .mode-option-select {
+            padding-right: 2.5em;
+        }
+
+        @media (max-width: 480px) {
+
+            .logo-option-select,
+            .mode-option-select {
+                font-size: 0.9rem;
+                padding: 0.5em 0.8em;
+            }
+        }
+
+
         .submit-section {
             display: flex;
             gap: 16px;
@@ -671,23 +725,7 @@
                         <h2 class="product-name">Camiseta Personalizada</h2>
                         <p class="product-desc">100% algodón, personalizable con tu diseño</p>
                         <!-- Ubicación del logo -->
-                        <div class="form-section logo-position-section">
-                            <h3 class="form-section-title">Ubicación del logo</h3>
-                            <div class="logo-options">
-                                <button type="button" class="logo-option-btn" data-position="adelante">Adelante</button>
-                                <button type="button" class="logo-option-btn" data-position="detras">Detrás</button>
-                                <button type="button" class="logo-option-btn" data-position="ambos">Ambos lados</button>
-                            </div>
-                        </div>
 
-                        <!-- Modo de personalización -->
-                        <div class="form-section print-mode-section">
-                            <h3 class="form-section-title">Tipo</h3>
-                            <div class="mode-options">
-                                <button type="button" class="mode-option-btn" data-mode="estampado">Estampado</button>
-                                <button type="button" class="mode-option-btn" data-mode="bordado">Bordado</button>
-                            </div>
-                        </div>
 
                     </div>
                 </div>
@@ -733,15 +771,10 @@
                                     <option value="">Selecciona talla</option>
                                     <optgroup label="Niño">
                                         <option value="4">4</option>
-                                        <option value="5">5</option>
                                         <option value="6">6</option>
-                                        <option value="7">7</option>
                                         <option value="8">8</option>
-                                        <option value="9">9</option>
                                         <option value="10">10</option>
-                                        <option value="11">11</option>
                                         <option value="12">12</option>
-                                        <option value="13">13</option>
                                         <option value="14">14</option>
                                     </optgroup>
                                     <optgroup label="Adulto">
@@ -770,7 +803,7 @@
 
                         <!-- === Historial de selecciones === -->
                         <div class="form-section size-history-section">
-                            <h3 class="form-section-title">Historial de tallas</h3>
+                            <h5 class="form-section-title">Historial de tallas</h5>
                             <table id="size-history-table">
                                 <thead>
                                     <tr>
@@ -798,6 +831,44 @@
                                 <div class="file-name" id="file-name">Ningún archivo seleccionado</div>
                             </div>
                         </div>
+
+                        <div class="form-section logo-position-section">
+                            <h3 class="form-section-title">Ubicación del logo</h3>
+                            <div class="logo-options">
+                                <button type="button" class="logo-option-btn" data-position="adelante">Adelante</button>
+                                <button type="button" class="logo-option-btn" data-position="detras">Detrás</button>
+                                <button type="button" class="logo-option-btn" data-position="ambos">Ambos lados</button>
+                            </div>
+                        </div>
+
+                        <!-- Modo de personalización -->
+                        <div class="form-section print-mode-section">
+                            <h3 class="form-section-title">Tipo</h3>
+                            <div class="mode-options">
+                                <button type="button" class="mode-option-btn" data-mode="estampado">Estampado</button>
+                                <button type="button" class="mode-option-btn" data-mode="bordado">Bordado</button>
+                            </div>
+                        </div>
+
+                        <!-- Ubicación del logo -->
+                        <div class="form-section logo-position-section">
+                            <label for="logo-position" class="form-section-title">Ubicación del logo</label>
+                            <select id="logo-position" name="logo-position" class="logo-option-select">
+                                <option value="adelante" data-position="adelante">Adelante</option>
+                                <option value="detras" data-position="detras">Detrás</option>
+                                <option value="ambos" data-position="ambos">Ambos lados</option>
+                            </select>
+                        </div>
+
+                        <!-- Modo de personalización -->
+                        <div class="form-section print-mode-section">
+                            <label for="print-mode" class="form-section-title">Tipo</label>
+                            <select id="print-mode" name="print-mode" class="mode-option-select">
+                                <option value="estampado" data-mode="estampado">Estampado</option>
+                                <option value="bordado" data-mode="bordado">Bordado</option>
+                            </select>
+                        </div>
+
 
                         <!-- Additional Notes -->
                         <div class="form-section">
@@ -841,7 +912,7 @@
             </div>
 
             <div class="footer-bottom">
-                <p>&copy; 2025 Texking. Todos los derechos reservados.</p>
+                <p>&copy; 2025 Texking.</p>
             </div>
         </div>
     </footer>

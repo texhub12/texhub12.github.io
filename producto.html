@@ -465,7 +465,7 @@
 
         /* Footer */
         .footer {
-            background-color: #1f2937;
+            background-color: #5d6166;
             color: white;
             padding: 40px 0;
             margin-top: 50px;
@@ -487,7 +487,7 @@
         }
 
         .footer-links a {
-            color: #9ca3af;
+            color: #ffffff;
             transition: color 0.3s;
         }
 
@@ -496,7 +496,7 @@
         }
 
         .contact-info li {
-            color: #9ca3af;
+            color: #ffffff;
             margin-bottom: 10px;
         }
 
@@ -505,7 +505,7 @@
             padding-top: 30px;
             margin-top: 30px;
             border-top: 1px solid #374151;
-            color: #9ca3af;
+            color: #ffffff;
         }
 
         /* Responsive */
@@ -622,19 +622,16 @@
 
                     <!-- COLUMNA DERECHA: Info + selector de color -->
                     <div class="product-info">
-                        <h1 class="product-title">Camiseta Básica Algodón</h1>
+                        <h1 class="product-title">CA3103 Chile Unisex</h1>
                         <p class="product-category">Colección Algodón</p>
                         <div class="product-price">1.15€ - 5.75€ / unidad</div>
 
                         <div class="product-description">
-                            <p>Camiseta básica confeccionada en algodón 100% de alta calidad (180 g/m²). Ideal para uso
-                                diario o personalización. Disponible en múltiples colores y tallas desde XS hasta XXL.
-                                Acabado de alta calidad con doble costura en mangas y bajo.</p>
-                            <p>Perfecta para mayoristas, tiendas de ropa, empresas de merchandising o servicios de
-                                estampación. Precio escalonado por volumen de compra.</p>
+                            <p>Camiseta 100% algodon - 170 g/m²</p>
+
                         </div>
 
-                       
+
                     </div>
                 </div> <!-- .product-detail-content -->
 
@@ -647,6 +644,7 @@
                                 <th>Talla</th>
                                 <th>Color</th>
                                 <th>Cantidad</th>
+                                <th>Stock</th> <!-- Nueva columna -->
                                 <th>Precio unitario</th>
                                 <th>Subtotal</th>
                             </tr>
@@ -671,6 +669,7 @@
                                         <span class="quantity-btn plus" data-size="S">+</span>
                                     </div>
                                 </td>
+                                <td>15</td> <!-- Stock inventado -->
                                 <td>1.15€</td>
                                 <td class="subtotal" data-size="S">0.00€</td>
                             </tr>
@@ -694,6 +693,7 @@
                                         <span class="quantity-btn plus" data-size="M">+</span>
                                     </div>
                                 </td>
+                                <td>12</td>
                                 <td>1.15€</td>
                                 <td class="subtotal" data-size="M">0.00€</td>
                             </tr>
@@ -717,6 +717,7 @@
                                         <span class="quantity-btn plus" data-size="L">+</span>
                                     </div>
                                 </td>
+                                <td>8</td>
                                 <td>1.15€</td>
                                 <td class="subtotal" data-size="L">0.00€</td>
                             </tr>
@@ -740,6 +741,7 @@
                                         <span class="quantity-btn plus" data-size="XL">+</span>
                                     </div>
                                 </td>
+                                <td>20</td>
                                 <td>1.15€</td>
                                 <td class="subtotal" data-size="XL">0.00€</td>
                             </tr>
@@ -763,6 +765,7 @@
                                         <span class="quantity-btn plus" data-size="2XL">+</span>
                                     </div>
                                 </td>
+                                <td>5</td>
                                 <td>1.15€</td>
                                 <td class="subtotal" data-size="2XL">0.00€</td>
                             </tr>
@@ -786,6 +789,7 @@
                                         <span class="quantity-btn plus" data-size="3XL">+</span>
                                     </div>
                                 </td>
+                                <td>3</td>
                                 <td>1.15€</td>
                                 <td class="subtotal" data-size="3XL">0.00€</td>
                             </tr>
@@ -809,6 +813,7 @@
                                         <span class="quantity-btn plus" data-size="4XL">+</span>
                                     </div>
                                 </td>
+                                <td>2</td>
                                 <td>1.15€</td>
                                 <td class="subtotal" data-size="4XL">0.00€</td>
                             </tr>
@@ -816,11 +821,13 @@
                             <!-- FILA DE TOTALES -->
                             <tr class="totals-row">
                                 <td colspan="3">Total</td>
+                                <td>65</td> <!-- Suma de stocks -->
                                 <td id="total-quantity">0 unidades</td>
                                 <td id="total-price">0.00€</td>
                             </tr>
                         </tbody>
                     </table>
+
 
                     <div class="product-actions">
                         <button class="add-to-cart-btn">Añadir al carrito</button>
@@ -853,7 +860,7 @@
             </div>
 
             <div class="footer-bottom">
-                <p>&copy; 2025 Texking. Todos los derechos reservados.</p>
+                <p>&copy; 2025 Texking.</p>
             </div>
         </div>
     </footer>
