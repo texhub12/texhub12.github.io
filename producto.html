@@ -57,10 +57,9 @@
             padding: 15px 0;
         }
 
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: #333;
+        .logo img {
+            max-width: 150px;
+            height: auto;
         }
 
         .nav-menu {
@@ -72,13 +71,9 @@
             transition: color 0.3s;
         }
 
-        .nav-menu a:hover {
-            color: #3b82f6;
-        }
-
+        .nav-menu a:hover,
         .nav-menu a.active {
             color: #3b82f6;
-            font-weight: bold;
         }
 
         .header-actions {
@@ -157,105 +152,25 @@
             border-radius: 8px;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
             padding: 30px;
+            margin-bottom: 30px;
         }
 
-        /* — Contenedor flex de columnas — */
         .product-detail-content {
             display: flex;
             gap: 40px;
             align-items: flex-start;
         }
 
-        /* — Selector de color — */
-        .product-color {
-            margin-bottom: 20px;
-        }
-
-        .product-color label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-        }
-
-        .product-color select {
-            width: 100%;
-            padding: 10px;
-            font-size: 1rem;
-            border: 1px solid #e5e7eb;
-            border-radius: 4px;
-        }
-
-        /* — Margen y estilo de la sección de tallas — */
-        .tallas-section {
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-            padding: 25px;
-            margin-top: 30px;
-        }
-
-        .tallas-section .section-title {
-            font-size: 22px;
-            font-weight: 600;
-            margin-bottom: 20px;
-        }
-
-        /* — Fila de totales — */
-        .totals-row {
-            font-weight: bold;
-            background-color: #f3f4f6;
-        }
-
-        /* — Botón de acción — */
-        .product-actions {
-            display: flex;
-            gap: 16px;
-            /* espacio entre botones */
-            margin-top: 25px;
-        }
-
-        /* Ambos botones ocupan la misma proporción */
-        .product-actions button {
-            flex: 1;
-            /* cada botón ocupa igual espacio */
-            padding: 12px;
-            font-size: 1rem;
-            border-radius: 4px;
-            cursor: pointer;
-            border: none;
-        }
-
-        /* Estilo para “Añadir al carrito” */
-        .add-to-cart-btn {
-            background-color: #333;
-            color: #fff;
-        }
-
-        .add-to-cart-btn:hover {
-            background-color: #555;
-        }
-
-        /* Estilo para “Guía de tallas” */
-        .size-guide-btn {
-            background-color: #f3f4f6;
-            color: #333;
-            border: 1px solid #d1d5db;
-        }
-
-        .size-guide-btn:hover {
-            background-color: #e5e7eb;
-        }
-
-
-
+        /* Gallery */
         .product-gallery {
             flex: 1;
             max-width: 500px;
+            height: 120%;
         }
 
         .product-main-image {
             width: 100%;
-            height: 500px;
+            height: 600px;
             border-radius: 8px;
             overflow: hidden;
             margin-bottom: 15px;
@@ -292,6 +207,7 @@
             object-fit: cover;
         }
 
+        /* Info */
         .product-info {
             flex: 1;
         }
@@ -319,90 +235,157 @@
             line-height: 1.8;
         }
 
-        /* Size Table */
-        .size-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 25px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        /* Swatches de color */
+        .color-swatches {
+            display: flex;
+            gap: 1rem;
+            margin: 1.5rem 0;
         }
 
-        /* Select dentro de la tabla de tallas */
-        .size-table select.color-select {
-            width: 100%;
-            padding: 8px;
-            font-size: 0.95rem;
+        .swatch {
+            text-align: center;
+            cursor: pointer;
+            width: 60px;
+            font-size: 0.75rem;
+            --swatch-bg: #fff;
+        }
+
+        .swatch-circle {
+            width: 40px;
+            height: 40px;
+            background: var(--swatch-bg);
             border: 1px solid #e5e7eb;
             border-radius: 4px;
-            background-color: #fff;
-            appearance: none;
-            /* quita flecha por defecto en algunos navegadores */
-            -webkit-appearance: none;
-            -moz-appearance: none;
+            margin: 0 auto 0.25rem;
         }
 
+        .swatch-label {
+            line-height: 1.2;
+        }
 
-        .size-table th,
-        .size-table td {
+        /* Accordion panels */
+        .panel {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin: 1rem 0;
+            overflow: hidden;
+        }
+
+        .panel summary {
+            list-style: none;
+            padding: 1rem 1.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .panel summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .panel summary::after {
+            content: "▾";
+            position: absolute;
+            right: 1.5rem;
+            transition: transform .2s ease;
+        }
+
+        .panel[open] summary::after {
+            transform: rotate(-180deg);
+        }
+
+        .panel-body {
+            padding: 1rem 1.5rem;
+            border-top: 1px solid #e5e7eb;
+            line-height: 1.6;
+        }
+
+        /* Cantidad global en panel */
+        .quantity-selector-global {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .qty-btn {
+            background: #f3f4f6;
+            border: 1px solid #d1d5db;
+            padding: 0 0.5rem;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .qty-input {
+            width: 50px;
+            text-align: center;
+            border: 1px solid #d1d5db;
+            font-size: 1rem;
+        }
+
+        /* Tabla de tallas: filas = colores, columnas = tallas */
+        .stock-table {
+            width: 100%;
+            border-collapse: collapse;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 25px;
+        }
+
+        .stock-table th,
+        .stock-table td {
             padding: 15px;
             text-align: center;
             border: 1px solid #e5e7eb;
+            vertical-align: top;
         }
 
-        .size-table th {
+        .stock-table th {
             background-color: #f9fafb;
             font-weight: 600;
         }
 
-        .size-table tr:nth-child(even) {
-            background-color: #f9fafb;
+        .stock-table td {
+            background-color: #fff;
         }
 
-        .tallas-section {
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-            padding: 25px;
-            margin-top: 30px;
+        .stock-table .cell {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        .quantity-selector {
+        .stock-table .cell-controls {
             display: flex;
             align-items: center;
-            justify-content: center;
+            gap: 0.5rem;
         }
 
-        .quantity-btn {
-            width: 30px;
-            height: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #f3f4f6;
+        .stock-table .cell-btn {
+            background: #f3f4f6;
             border: 1px solid #d1d5db;
+            padding: 0 0.5rem;
             cursor: pointer;
-            user-select: none;
-            font-size: 18px;
         }
 
-        .quantity-btn:hover {
-            background-color: #e5e7eb;
-        }
-
-        .quantity-input {
+        .stock-table .cell-input {
             width: 40px;
-            height: 30px;
             text-align: center;
             border: 1px solid #d1d5db;
-            margin: 0 5px;
-            font-size: 14px;
+            border-radius: 4px;
+            font-size: 1rem;
         }
 
-        /* Action buttons */
+        .stock-table .cell-stock {
+            font-size: 0.75rem;
+            color: #6b7280;
+        }
+
+        /* Acción botones bajo tabla */
         .product-actions {
             display: flex;
             gap: 15px;
-            margin-top: 30px;
+            margin-top: 15px;
         }
 
         .add-to-cart-btn {
@@ -421,46 +404,15 @@
             background-color: #2563eb;
         }
 
-        .wholesale-note {
-            margin-top: 25px;
-            padding: 15px;
-            background-color: #f0f9ff;
-            border-left: 4px solid #3b82f6;
-            border-radius: 4px;
+        .size-guide-btn {
+            background-color: #f3f4f6;
+            color: #333;
+            border: 1px solid #d1d5db;
+            width: 50%;
         }
 
-        /* Product tabs */
-        .product-tabs {
-            margin-top: 40px;
-        }
-
-        .tab-buttons {
-            display: flex;
-            border-bottom: 1px solid #e5e7eb;
-            margin-bottom: 20px;
-        }
-
-        .tab-btn {
-            padding: 12px 20px;
-            cursor: pointer;
-            border-bottom: 2px solid transparent;
-            font-weight: 500;
-            transition: all 0.3s;
-        }
-
-        .tab-btn.active {
-            border-bottom-color: #3b82f6;
-            color: #3b82f6;
-        }
-
-        .tab-content {
-            display: none;
-            padding: 10px 0;
-            line-height: 1.8;
-        }
-
-        .tab-content.active {
-            display: block;
+        .size-guide-btn:hover {
+            background-color: #e5e7eb;
         }
 
         /* Footer */
@@ -480,19 +432,6 @@
         .footer-section h3 {
             font-size: 18px;
             margin-bottom: 20px;
-        }
-
-        .footer-links li {
-            margin-bottom: 10px;
-        }
-
-        .footer-links a {
-            color: #ffffff;
-            transition: color 0.3s;
-        }
-
-        .footer-links a:hover {
-            color: white;
         }
 
         .contact-info li {
@@ -536,11 +475,11 @@
                 justify-content: center;
             }
 
-            .size-table {
+            .stock-table {
                 font-size: 14px;
             }
 
-            .quantity-input {
+            .cell-input {
                 width: 30px;
             }
 
@@ -555,25 +494,17 @@
     <!-- Header -->
     <header class="header">
         <div class="container header-container">
-            <div class="logo">
-                <img src="imgs/logo.png" alt="" style="max-width: 150px;">
-            </div>
-
+            <div class="logo"><img src="imgs/logo.png" alt="Texking"></div>
             <nav class="nav-menu">
                 <a href="index.html" class="active">Catálogo</a>
                 <a href="mto.html">Made to Order</a>
             </nav>
-
             <div class="header-actions">
                 <div class="search-bar">
                     <input type="text" placeholder="Buscar...">
                     <button>🔍</button>
                 </div>
-
-                <button class="icon-button">
-                    <a href="perfil.html">👤</a>
-                </button>
-
+                <button class="icon-button"><a href="perfil.html">👤</a></button>
                 <button class="icon-button">
                     <a href="carrito.html">🛒</a>
                     <span class="cart-count">0</span>
@@ -587,256 +518,407 @@
         <div class="container">
             <!-- Breadcrumb -->
             <div class="breadcrumb">
-                <a href="index.html">Inicio</a>
-                <span>></span>
-                <a href="index.html">Catálogo</a>
-                <span>></span>
-                <a href="#">Camisetas</a>
-                <span>></span>
-                <a href="#" style="color: #333; font-weight: 500;">Camiseta Básica Algodón</a>
+                <a href="index.html">Inicio</a><span>&gt;</span>
+                <a href="index.html">Catálogo</a><span>&gt;</span>
+                <a href="#">Camisetas</a><span>&gt;</span>
+                <a href="#" style="color:#333;font-weight:500;">Camiseta Básica Algodón</a>
             </div>
 
             <!-- Product Detail -->
             <div class="product-detail">
                 <div class="product-detail-content">
-                    <!-- COLUMNA IZQUIERDA: Galería -->
+                    <!-- Galería -->
                     <div class="product-gallery">
                         <div class="product-main-image">
-                            <img src="imgs/Page 4 Dacca.jpg" alt="Camiseta Básica Algodón">
-                        </div>
-                        <div class="product-thumbnails">
-                            <div class="product-thumb active">
-                                <img src="/api/placeholder/80/80" alt="Camiseta vista frontal">
-                            </div>
-                            <div class="product-thumb">
-                                <img src="/api/placeholder/80/80" alt="Camiseta vista trasera">
-                            </div>
-                            <div class="product-thumb">
-                                <img src="/api/placeholder/80/80" alt="Camiseta detalle">
-                            </div>
-                            <div class="product-thumb">
-                                <img src="/api/placeholder/80/80" alt="Camiseta variante color">
-                            </div>
+                            <img src="https://texking.es/wp-content/uploads/2023/12/cropped-WhatsApp-Image-2023-12-11-at-17.23.13-2.jpeg"
+                                alt="Camiseta Básica Algodón">
                         </div>
                     </div>
 
-                    <!-- COLUMNA DERECHA: Info + selector de color -->
+                    <!-- Info -->
                     <div class="product-info">
-                        <h1 class="product-title">CA3103 Chile Unisex</h1>
-                        <p class="product-category">Colección Algodón</p>
+                        <h1 class="product-title">CA0807 Vola Hombre</h1>
+                        <p class="product-category">Camiseta técnica de manga corta con cuello redondo.
+
+                            Tejido transpirable de fácil lavado y secado.</p>
                         <div class="product-price">1.15€ - 5.75€ / unidad</div>
 
-                        <div class="product-description">
-                            <p>Camiseta 100% algodon - 170 g/m²</p>
-
+                        <!-- Swatches de color -->
+                        <div class="color-swatches">
+                            <div class="swatch" style="--swatch-bg:#ffffff;">
+                                <div class="swatch-circle"></div>
+                                <div class="swatch-label">Blanco</div>
+                            </div>
+                            <div class="swatch" style="--swatch-bg:#000000;">
+                                <div class="swatch-circle"></div>
+                                <div class="swatch-label">Negro</div>
+                            </div>
+                            <div class="swatch" style="--swatch-bg:#0000ff;">
+                                <div class="swatch-circle"></div>
+                                <div class="swatch-label">Azul</div>
+                            </div>
+                            <div class="swatch" style="--swatch-bg:#ff0000;">
+                                <div class="swatch-circle"></div>
+                                <div class="swatch-label">Rojo</div>
+                            </div>
                         </div>
 
+                        <!-- Acordeones -->
+                        <details class="panel">
+                            <summary>COMPOSICIÓN</summary>
+                            <div class="panel-body">100% poliéster piqué, 135 -140 g/m2.</div>
+                        </details>
+                        <details class="panel">
+                            <summary>TALLAS</summary>
+                            <div class="panel-body">Hombre: S – M – L – XL – XXL – 3XL – 4XL
+<br>
+                                Mujer: S – M – L – XL – XXL – 3XL
+<br>
+                                Niños: 8 – 10 – 12 </div>
+                        </details>
+                        <details class="panel">
+                            <summary>OBSERVACIONES</summary>
+                            <div class="panel-body">*Etiqueta removible *Transfer *Manipulado</div>
+                        </details>
+                        <details class="panel">
+                            <summary>CANTIDAD</summary>
+                            <div class="panel-body">
+                                <p>Adulto: Caja 50 unidades. Pack: 5 unidades. Mismo color misma talla.
 
+                                    Niño: Caja 50 unidades. Pack: 5 unidades. Mismo color misma talla.</p>
+                            </div>
+                        </details>
                     </div>
-                </div> <!-- .product-detail-content -->
-
-                <!-- TABLA DE TALLAS (S–4XL) -->
-                <div class="tallas-section">
-                    <h2 class="section-title">Seleccione cantidades por talla:</h2>
-                    <table class="size-table">
-                        <thead>
-                            <tr>
-                                <th>Talla</th>
-                                <th>Color</th>
-                                <th>Cantidad</th>
-                                <th>Stock</th> <!-- Nueva columna -->
-                                <th>Precio unitario</th>
-                                <th>Subtotal</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!-- FILA S -->
-                            <tr>
-                                <td>S</td>
-                                <td>
-                                    <select class="color-select" name="color-S" data-size="S">
-                                        <option value="">Selecciona</option>
-                                        <option value="negro">Negro</option>
-                                        <option value="blanco">Blanco</option>
-                                        <option value="azul">Azul</option>
-                                        <option value="rojo">Rojo</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <div class="quantity-selector">
-                                        <span class="quantity-btn minus" data-size="S">−</span>
-                                        <input type="number" class="quantity-input" value="0" min="0" data-size="S">
-                                        <span class="quantity-btn plus" data-size="S">+</span>
-                                    </div>
-                                </td>
-                                <td>15</td> <!-- Stock inventado -->
-                                <td>1.15€</td>
-                                <td class="subtotal" data-size="S">0.00€</td>
-                            </tr>
-
-                            <!-- FILA M -->
-                            <tr>
-                                <td>M</td>
-                                <td>
-                                    <select class="color-select" name="color-M" data-size="M">
-                                        <option value="">Selecciona</option>
-                                        <option value="negro">Negro</option>
-                                        <option value="blanco">Blanco</option>
-                                        <option value="azul">Azul</option>
-                                        <option value="rojo">Rojo</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <div class="quantity-selector">
-                                        <span class="quantity-btn minus" data-size="M">−</span>
-                                        <input type="number" class="quantity-input" value="0" min="0" data-size="M">
-                                        <span class="quantity-btn plus" data-size="M">+</span>
-                                    </div>
-                                </td>
-                                <td>12</td>
-                                <td>1.15€</td>
-                                <td class="subtotal" data-size="M">0.00€</td>
-                            </tr>
-
-                            <!-- FILA L -->
-                            <tr>
-                                <td>L</td>
-                                <td>
-                                    <select class="color-select" name="color-L" data-size="L">
-                                        <option value="">Selecciona</option>
-                                        <option value="negro">Negro</option>
-                                        <option value="blanco">Blanco</option>
-                                        <option value="azul">Azul</option>
-                                        <option value="rojo">Rojo</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <div class="quantity-selector">
-                                        <span class="quantity-btn minus" data-size="L">−</span>
-                                        <input type="number" class="quantity-input" value="0" min="0" data-size="L">
-                                        <span class="quantity-btn plus" data-size="L">+</span>
-                                    </div>
-                                </td>
-                                <td>8</td>
-                                <td>1.15€</td>
-                                <td class="subtotal" data-size="L">0.00€</td>
-                            </tr>
-
-                            <!-- FILA XL -->
-                            <tr>
-                                <td>XL</td>
-                                <td>
-                                    <select class="color-select" name="color-XL" data-size="XL">
-                                        <option value="">Selecciona</option>
-                                        <option value="negro">Negro</option>
-                                        <option value="blanco">Blanco</option>
-                                        <option value="azul">Azul</option>
-                                        <option value="rojo">Rojo</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <div class="quantity-selector">
-                                        <span class="quantity-btn minus" data-size="XL">−</span>
-                                        <input type="number" class="quantity-input" value="0" min="0" data-size="XL">
-                                        <span class="quantity-btn plus" data-size="XL">+</span>
-                                    </div>
-                                </td>
-                                <td>20</td>
-                                <td>1.15€</td>
-                                <td class="subtotal" data-size="XL">0.00€</td>
-                            </tr>
-
-                            <!-- FILA 2XL -->
-                            <tr>
-                                <td>2XL</td>
-                                <td>
-                                    <select class="color-select" name="color-2XL" data-size="2XL">
-                                        <option value="">Selecciona</option>
-                                        <option value="negro">Negro</option>
-                                        <option value="blanco">Blanco</option>
-                                        <option value="azul">Azul</option>
-                                        <option value="rojo">Rojo</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <div class="quantity-selector">
-                                        <span class="quantity-btn minus" data-size="2XL">−</span>
-                                        <input type="number" class="quantity-input" value="0" min="0" data-size="2XL">
-                                        <span class="quantity-btn plus" data-size="2XL">+</span>
-                                    </div>
-                                </td>
-                                <td>5</td>
-                                <td>1.15€</td>
-                                <td class="subtotal" data-size="2XL">0.00€</td>
-                            </tr>
-
-                            <!-- FILA 3XL -->
-                            <tr>
-                                <td>3XL</td>
-                                <td>
-                                    <select class="color-select" name="color-3XL" data-size="3XL">
-                                        <option value="">Selecciona</option>
-                                        <option value="negro">Negro</option>
-                                        <option value="blanco">Blanco</option>
-                                        <option value="azul">Azul</option>
-                                        <option value="rojo">Rojo</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <div class="quantity-selector">
-                                        <span class="quantity-btn minus" data-size="3XL">−</span>
-                                        <input type="number" class="quantity-input" value="0" min="0" data-size="3XL">
-                                        <span class="quantity-btn plus" data-size="3XL">+</span>
-                                    </div>
-                                </td>
-                                <td>3</td>
-                                <td>1.15€</td>
-                                <td class="subtotal" data-size="3XL">0.00€</td>
-                            </tr>
-
-                            <!-- FILA 4XL -->
-                            <tr>
-                                <td>4XL</td>
-                                <td>
-                                    <select class="color-select" name="color-4XL" data-size="4XL">
-                                        <option value="">Selecciona</option>
-                                        <option value="negro">Negro</option>
-                                        <option value="blanco">Blanco</option>
-                                        <option value="azul">Azul</option>
-                                        <option value="rojo">Rojo</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <div class="quantity-selector">
-                                        <span class="quantity-btn minus" data-size="4XL">−</span>
-                                        <input type="number" class="quantity-input" value="0" min="0" data-size="4XL">
-                                        <span class="quantity-btn plus" data-size="4XL">+</span>
-                                    </div>
-                                </td>
-                                <td>2</td>
-                                <td>1.15€</td>
-                                <td class="subtotal" data-size="4XL">0.00€</td>
-                            </tr>
-
-                            <!-- FILA DE TOTALES -->
-                            <tr class="totals-row">
-                                <td colspan="3">Total</td>
-                                <td>65</td> <!-- Suma de stocks -->
-                                <td id="total-quantity">0 unidades</td>
-                                <td id="total-price">0.00€</td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-
-                    <div class="product-actions">
-                        <button class="add-to-cart-btn">Añadir al carrito</button>
-                        <button class="size-guide-btn">Guía de tallas</button>
-                    </div>
-
                 </div>
             </div>
 
+            <!-- Tabla de tallas (filas = colores, columnas = tallas) -->
+            <div class="tallas-section">
+                <h2 class="section-title">Seleccione cantidades por color y talla:</h2>
+                <table class="stock-table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>S</th>
+                            <th>M</th>
+                            <th>L</th>
+                            <th>XL</th>
+                            <th>2XL</th>
+                            <th>3XL</th>
+                            <th>4XL</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Fila Blanco -->
+                        <tr>
+                            <td>Blanco</td>
+                            <!-- S -->
+                            <td>
+                                <div class="cell" data-color="blanco" data-size="S" data-stock="15">
+                                    <div class="cell-controls">
+                                        <button class="cell-btn minus">−</button>
+                                        <input type="number" class="cell-input" value="0" min="0">
+                                        <button class="cell-btn plus">+</button>
+                                    </div>
+                                    <div class="cell-stock">15</div>
+                                </div>
+                            </td>
+                            <!-- M -->
+                            <td>
+                                <div class="cell" data-color="blanco" data-size="M" data-stock="12">
+                                    <div class="cell-controls">
+                                        <button class="cell-btn minus">−</button>
+                                        <input type="number" class="cell-input" value="0" min="0">
+                                        <button class="cell-btn plus">+</button>
+                                    </div>
+                                    <div class="cell-stock">12</div>
+                                </div>
+                            </td>
+                            <!-- L -->
+                            <td>
+                                <div class="cell" data-color="blanco" data-size="L" data-stock="8">
+                                    <div class="cell-controls">
+                                        <button class="cell-btn minus">−</button>
+                                        <input type="number" class="cell-input" value="0" min="0">
+                                        <button class="cell-btn plus">+</button>
+                                    </div>
+                                    <div class="cell-stock">8</div>
+                                </div>
+                            </td>
+                            <!-- XL -->
+                            <td>
+                                <div class="cell" data-color="blanco" data-size="XL" data-stock="20">
+                                    <div class="cell-controls">
+                                        <button class="cell-btn minus">−</button>
+                                        <input type="number" class="cell-input" value="0" min="0">
+                                        <button class="cell-btn plus">+</button>
+                                    </div>
+                                    <div class="cell-stock">20</div>
+                                </div>
+                            </td>
+                            <!-- 2XL -->
+                            <td>
+                                <div class="cell" data-color="blanco" data-size="2XL" data-stock="5">
+                                    <div class="cell-controls">
+                                        <button class="cell-btn minus">−</button>
+                                        <input type="number" class="cell-input" value="0" min="0">
+                                        <button class="cell-btn plus">+</button>
+                                    </div>
+                                    <div class="cell-stock">5</div>
+                                </div>
+                            </td>
+                            <!-- 3XL -->
+                            <td>
+                                <div class="cell" data-color="blanco" data-size="3XL" data-stock="3">
+                                    <div class="cell-controls">
+                                        <button class="cell-btn minus">−</button>
+                                        <input type="number" class="cell-input" value="0" min="0">
+                                        <button class="cell-btn plus">+</button>
+                                    </div>
+                                    <div class="cell-stock">3</div>
+                                </div>
+                            </td>
+                            <!-- 4XL -->
+                            <td>
+                                <div class="cell" data-color="blanco" data-size="4XL" data-stock="2">
+                                    <div class="cell-controls">
+                                        <button class="cell-btn minus">−</button>
+                                        <input type="number" class="cell-input" value="0" min="0">
+                                        <button class="cell-btn plus">+</button>
+                                    </div>
+                                    <div class="cell-stock">2</div>
+                                </div>
+                            </td>
+                        </tr>
+                        <!-- Fila Negro (igual estructura, sólo cambia data-color y stock si varía) -->
+                        <tr>
+                            <td>Negro</td>
+                            <td>
+                                <div class="cell" data-color="negro" data-size="S" data-stock="15">
+                                    <div class="cell-controls">
+                                        <button class="cell-btn minus">−</button>
+                                        <input type="number" class="cell-input" value="0" min="0">
+                                        <button class="cell-btn plus">+</button>
+                                    </div>
+                                    <div class="cell-stock">15</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell" data-color="negro" data-size="M" data-stock="12">
+                                    <div class="cell-controls">
+                                        <button class="cell-btn minus">−</button>
+                                        <input type="number" class="cell-input" value="0" min="0">
+                                        <button class="cell-btn plus">+</button>
+                                    </div>
+                                    <div class="cell-stock">12</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell" data-color="negro" data-size="L" data-stock="8">
+                                    <div class="cell-controls">
+                                        <button class="cell-btn minus">−</button>
+                                        <input type="number" class="cell-input" value="0" min="0">
+                                        <button class="cell-btn plus">+</button>
+                                    </div>
+                                    <div class="cell-stock">8</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell" data-color="negro" data-size="XL" data-stock="20">
+                                    <div class="cell-controls">
+                                        <button class="cell-btn minus">−</button>
+                                        <input type="number" class="cell-input" value="0" min="0">
+                                        <button class="cell-btn plus">+</button>
+                                    </div>
+                                    <div class="cell-stock">20</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell" data-color="negro" data-size="2XL" data-stock="5">
+                                    <div class="cell-controls">
+                                        <button class="cell-btn minus">−</button>
+                                        <input type="number" class="cell-input" value="0" min="0">
+                                        <button class="cell-btn plus">+</button>
+                                    </div>
+                                    <div class="cell-stock">5</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell" data-color="negro" data-size="3XL" data-stock="3">
+                                    <div class="cell-controls">
+                                        <button class="cell-btn minus">−</button>
+                                        <input type="number" class="cell-input" value="0" min="0">
+                                        <button class="cell-btn plus">+</button>
+                                    </div>
+                                    <div class="cell-stock">3</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell" data-color="negro" data-size="4XL" data-stock="2">
+                                    <div class="cell-controls">
+                                        <button class="cell-btn minus">−</button>
+                                        <input type="number" class="cell-input" value="0" min="0">
+                                        <button class="cell-btn plus">+</button>
+                                    </div>
+                                    <div class="cell-stock">2</div>
+                                </div>
+                            </td>
+                        </tr>
+                        <!-- Fila Azul -->
+                        <tr>
+                            <td>Azul</td>
+                            <td>
+                                <div class="cell" data-color="azul" data-size="S" data-stock="15">
+                                    <div class="cell-controls">
+                                        <button class="cell-btn minus">−</button>
+                                        <input type="number" class="cell-input" value="0" min="0">
+                                        <button class="cell-btn plus">+</button>
+                                    </div>
+                                    <div class="cell-stock">15</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell" data-color="azul" data-size="M" data-stock="12">
+                                    <div class="cell-controls">
+                                        <button class="cell-btn minus">−</button>
+                                        <input type="number" class="cell-input" value="0" min="0">
+                                        <button class="cell-btn plus">+</button>
+                                    </div>
+                                    <div class="cell-stock">12</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell" data-color="azul" data-size="L" data-stock="8">
+                                    <div class="cell-controls">
+                                        <button class="cell-btn minus">−</button>
+                                        <input type="number" class="cell-input" value="0" min="0">
+                                        <button class="cell-btn plus">+</button>
+                                    </div>
+                                    <div class="cell-stock">8</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell" data-color="azul" data-size="XL" data-stock="20">
+                                    <div class="cell-controls">
+                                        <button class="cell-btn minus">−</button>
+                                        <input type="number" class="cell-input" value="0" min="0">
+                                        <button class="cell-btn plus">+</button>
+                                    </div>
+                                    <div class="cell-stock">20</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell" data-color="azul" data-size="2XL" data-stock="5">
+                                    <div class="cell-controls">
+                                        <button class="cell-btn minus">−</button>
+                                        <input type="number" class="cell-input" value="0" min="0">
+                                        <button class="cell-btn plus">+</button>
+                                    </div>
+                                    <div class="cell-stock">5</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell" data-color="azul" data-size="3XL" data-stock="3">
+                                    <div class="cell-controls">
+                                        <button class="cell-btn minus">−</button>
+                                        <input type="number" class="cell-input" value="0" min="0">
+                                        <button class="cell-btn plus">+</button>
+                                    </div>
+                                    <div class="cell-stock">3</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell" data-color="azul" data-size="4XL" data-stock="2">
+                                    <div class="cell-controls">
+                                        <button class="cell-btn minus">−</button>
+                                        <input type="number" class="cell-input" value="0" min="0">
+                                        <button class="cell-btn plus">+</button>
+                                    </div>
+                                    <div class="cell-stock">2</div>
+                                </div>
+                            </td>
+                        </tr>
+                        <!-- Fila Rojo -->
+                        <tr>
+                            <td>Rojo</td>
+                            <td>
+                                <div class="cell" data-color="rojo" data-size="S" data-stock="15">
+                                    <div class="cell-controls">
+                                        <button class="cell-btn minus">−</button>
+                                        <input type="number" class="cell-input" value="0" min="0">
+                                        <button class="cell-btn plus">+</button>
+                                    </div>
+                                    <div class="cell-stock">15</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell" data-color="rojo" data-size="M" data-stock="12">
+                                    <div class="cell-controls">
+                                        <button class="cell-btn minus">−</button>
+                                        <input type="number" class="cell-input" value="0" min="0">
+                                        <button class="cell-btn plus">+</button>
+                                    </div>
+                                    <div class="cell-stock">12</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell" data-color="rojo" data-size="L" data-stock="8">
+                                    <div class="cell-controls">
+                                        <button class="cell-btn minus">−</button>
+                                        <input type="number" class="cell-input" value="0" min="0">
+                                        <button class="cell-btn plus">+</button>
+                                    </div>
+                                    <div class="cell-stock">8</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell" data-color="rojo" data-size="XL" data-stock="20">
+                                    <div class="cell-controls">
+                                        <button class="cell-btn minus">−</button>
+                                        <input type="number" class="cell-input" value="0" min="0">
+                                        <button class="cell-btn plus">+</button>
+                                    </div>
+                                    <div class="cell-stock">20</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell" data-color="rojo" data-size="2XL" data-stock="5">
+                                    <div class="cell-controls">
+                                        <button class="cell-btn minus">−</button>
+                                        <input type="number" class="cell-input" value="0" min="0">
+                                        <button class="cell-btn plus">+</button>
+                                    </div>
+                                    <div class="cell-stock">5</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell" data-color="rojo" data-size="3XL" data-stock="3">
+                                    <div class="cell-controls">
+                                        <button class="cell-btn minus">−</button>
+                                        <input type="number" class="cell-input" value="0" min="0">
+                                        <button class="cell-btn plus">+</button>
+                                    </div>
+                                    <div class="cell-stock">3</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell" data-color="rojo" data-size="4XL" data-stock="2">
+                                    <div class="cell-controls">
+                                        <button class="cell-btn minus">−</button>
+                                        <input type="number" class="cell-input" value="0" min="0">
+                                        <button class="cell-btn plus">+</button>
+                                    </div>
+                                    <div class="cell-stock">2</div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="product-actions">
+                    <button class="add-to-cart-btn">Añadir al carrito</button>
+                    <button class="size-guide-btn">Guía de tallas</button>
+                </div>
+            </div>
         </div>
     </main>
 
@@ -848,7 +930,6 @@
                     <h3>TEXKING</h3>
                     <p>Tu tienda de confianza para productos de calidad. Diseños únicos y personalizados.</p>
                 </div>
-
                 <div class="footer-section">
                     <h3>Contacto</h3>
                     <ul class="contact-info">
@@ -858,7 +939,6 @@
                     </ul>
                 </div>
             </div>
-
             <div class="footer-bottom">
                 <p>&copy; 2025 Texking.</p>
             </div>
@@ -867,127 +947,46 @@
 
     <!-- JavaScript -->
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Tab functionality
-            const tabButtons = document.querySelectorAll('.tab-btn');
-            const tabContents = document.querySelectorAll('.tab-content');
-
-            tabButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    // Remove active class from all buttons and contents
-                    tabButtons.forEach(btn => btn.classList.remove('active'));
-                    tabContents.forEach(content => content.classList.remove('active'));
-
-                    // Add active class to clicked button
-                    button.classList.add('active');
-
-                    // Show corresponding content
-                    const tabId = button.getAttribute('data-tab');
-                    document.getElementById(`${tabId}-tab`).classList.add('active');
-                });
-            });
-
-            // Thumbnail gallery
-            const thumbnails = document.querySelectorAll('.product-thumb');
-            const mainImage = document.querySelector('.product-main-image img');
-
-            thumbnails.forEach(thumb => {
+        document.addEventListener('DOMContentLoaded', () => {
+            // Galería thumbnails
+            document.querySelectorAll('.product-thumb').forEach(thumb => {
                 thumb.addEventListener('click', () => {
-                    // Remove active class from all thumbnails
-                    thumbnails.forEach(t => t.classList.remove('active'));
-
-                    // Add active class to clicked thumbnail
+                    document.querySelectorAll('.product-thumb').forEach(t => t.classList.remove('active'));
                     thumb.classList.add('active');
-
-                    // Update main image (in a real implementation, you would change the src)
-                    // Here we're just simulating the change
-                    mainImage.setAttribute('alt', thumb.querySelector('img').getAttribute('alt'));
+                    const alt = thumb.querySelector('img').alt;
+                    document.querySelector('.product-main-image img').alt = alt;
                 });
             });
 
-            // Quantity selector functionality
-            const minusButtons = document.querySelectorAll('.quantity-btn.minus');
-            const plusButtons = document.querySelectorAll('.quantity-btn.plus');
-            const quantityInputs = document.querySelectorAll('.quantity-input');
+            // Controles de cada celda
+            document.querySelectorAll('.stock-table .cell').forEach(cell => {
+                const minus = cell.querySelector('.minus');
+                const plus = cell.querySelector('.plus');
+                const input = cell.querySelector('.cell-input');
+                const stock = parseInt(cell.dataset.stock, 10);
 
-            // Function to update totals
-            function updateTotals() {
-                let totalQuantity = 0;
-                let totalPrice = 0;
-                const basePrice = 1.15;
-
-                quantityInputs.forEach(input => {
-                    const quantity = parseInt(input.value);
-                    totalQuantity += quantity;
-
-                    const size = input.getAttribute('data-size');
-                    const subtotal = quantity * basePrice;
-                    totalPrice += subtotal;
-
-                    // Update subtotal for this row
-                    const subtotalCell = document.querySelector(`.subtotal[data-size="${size}"]`);
-                    subtotalCell.textContent = subtotal.toFixed(2) + '€';
+                minus.addEventListener('click', () => {
+                    let v = parseInt(input.value, 10);
+                    if (v > 0) input.value = v - 1;
                 });
-
-                // Update total quantity and price
-                document.getElementById('total-quantity').textContent = totalQuantity + ' unidades';
-                document.getElementById('total-price').textContent = totalPrice.toFixed(2) + '€';
-            }
-
-            // Add event listeners to minus buttons
-            minusButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const size = button.getAttribute('data-size');
-                    const input = document.querySelector(`.quantity-input[data-size="${size}"]`);
-                    let value = parseInt(input.value);
-
-                    if (value > 0) {
-                        input.value = value - 1;
-                        updateTotals();
-                    }
+                plus.addEventListener('click', () => {
+                    let v = parseInt(input.value, 10);
+                    if (v < stock) input.value = v + 1;
                 });
             });
 
-            // Add event listeners to plus buttons
-            plusButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const size = button.getAttribute('data-size');
-                    const input = document.querySelector(`.quantity-input[data-size="${size}"]`);
-                    let value = parseInt(input.value);
-
-                    input.value = value + 1;
-                    updateTotals();
+            // Añadir al carrito (suma todos los valores de las celdas)
+            document.querySelector('.add-to-cart-btn').addEventListener('click', () => {
+                let totalUnits = 0;
+                document.querySelectorAll('.stock-table .cell-input').forEach(input => {
+                    totalUnits += parseInt(input.value, 10) || 0;
                 });
-            });
-
-            // Add event listeners to inputs for direct number entry
-            quantityInputs.forEach(input => {
-                input.addEventListener('change', () => {
-                    // Ensure value is not negative
-                    if (parseInt(input.value) < 0) {
-                        input.value = 0;
-                    }
-
-                    updateTotals();
-                });
-            });
-
-            // Add to cart button
-            const addToCartBtn = document.querySelector('.add-to-cart-btn');
-            addToCartBtn.addEventListener('click', () => {
-                let totalQuantity = 0;
-                quantityInputs.forEach(input => {
-                    totalQuantity += parseInt(input.value);
-                });
-
-                if (totalQuantity > 0) {
-                    alert('Productos añadidos al carrito correctamente');
-
-                    // Update cart count (this would be more sophisticated in a real implementation)
+                if (totalUnits > 0) {
+                    alert(`Has añadido ${totalUnits} unidad(es) al carrito.`);
                     const cartCount = document.querySelector('.cart-count');
-                    cartCount.textContent = parseInt(cartCount.textContent) + totalQuantity;
+                    cartCount.textContent = parseInt(cartCount.textContent, 10) + totalUnits;
                 } else {
-                    alert('Por favor, seleccione al menos una unidad para añadir al carrito');
+                    alert('Por favor, selecciona al menos una unidad.');
                 }
             });
         });
