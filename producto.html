@@ -447,6 +447,35 @@
             color: #ffffff;
         }
 
+        /* Espacio arriba del botón de descarga */
+        .product-actions-download {
+            margin-top: 15px;
+            text-align: center;
+            /* opcional, centra el botón */
+        }
+
+        /* Estilo del botón Descargar PDF */
+        .download-pdf-btn {
+            padding: 12px 25px;
+            background-color: #10b981;
+            /* verde suave */
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+            /* ocupa todo el ancho disponible */
+            max-width: 300px;
+            /* opcional, limita anchura */
+        }
+
+        .download-pdf-btn:hover {
+            background-color: #059669;
+        }
+
+
         /* Responsive */
         @media (max-width: 768px) {
             .product-detail-content {
@@ -571,10 +600,11 @@
                         <details class="panel">
                             <summary>TALLAS</summary>
                             <div class="panel-body">Hombre: S – M – L – XL – XXL – 3XL – 4XL
-<br>
+                                <br>
                                 Mujer: S – M – L – XL – XXL – 3XL
-<br>
-                                Niños: 8 – 10 – 12 </div>
+                                <br>
+                                Niños: 8 – 10 – 12
+                            </div>
                         </details>
                         <details class="panel">
                             <summary>OBSERVACIONES</summary>
@@ -917,6 +947,11 @@
                 <div class="product-actions">
                     <button class="add-to-cart-btn">Añadir al carrito</button>
                     <button class="size-guide-btn">Guía de tallas</button>
+                </div>
+                <div class="product-actions-download">
+                    <button class="download-pdf-btn" type="button" data-pdf-url="#">
+                        Descargar PDF
+                    </button>
                 </div>
             </div>
         </div>
