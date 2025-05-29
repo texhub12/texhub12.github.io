@@ -381,6 +381,14 @@
             color: #6b7280;
         }
 
+        /* Precio unitario en cada celda */
+        .stock-table .cell-price {
+            font-size: 0.75rem;
+            color: #059669;
+            font-weight: 600;
+            margin-top: 2px;
+        }
+
         /* Acción botones bajo tabla */
         .product-actions {
             display: flex;
@@ -451,14 +459,12 @@
         .product-actions-download {
             margin-top: 15px;
             text-align: center;
-            /* opcional, centra el botón */
         }
 
         /* Estilo del botón Descargar PDF */
         .download-pdf-btn {
             padding: 12px 25px;
             background-color: #10b981;
-            /* verde suave */
             color: #fff;
             border: none;
             border-radius: 6px;
@@ -466,15 +472,12 @@
             cursor: pointer;
             transition: background-color 0.3s;
             width: 100%;
-            /* ocupa todo el ancho disponible */
             max-width: 300px;
-            /* opcional, limita anchura */
         }
 
         .download-pdf-btn:hover {
             background-color: #059669;
         }
-
 
         /* Responsive */
         @media (max-width: 768px) {
@@ -644,153 +647,167 @@
                             <td>Blanco</td>
                             <!-- S -->
                             <td>
-                                <div class="cell" data-color="blanco" data-size="S" data-stock="15">
+                                <div class="cell" data-color="blanco" data-size="S" data-stock="15" data-price="2.45">
                                     <div class="cell-controls">
                                         <button class="cell-btn minus">−</button>
                                         <input type="number" class="cell-input" value="0" min="0">
                                         <button class="cell-btn plus">+</button>
                                     </div>
-                                    <div class="cell-stock">15</div>
+                                    <div class="cell-stock">Stock: 15</div>
+                                    <div class="cell-price">2.45€/ud</div>
                                 </div>
                             </td>
                             <!-- M -->
                             <td>
-                                <div class="cell" data-color="blanco" data-size="M" data-stock="12">
+                                <div class="cell" data-color="blanco" data-size="M" data-stock="12" data-price="2.45">
                                     <div class="cell-controls">
                                         <button class="cell-btn minus">−</button>
                                         <input type="number" class="cell-input" value="0" min="0">
                                         <button class="cell-btn plus">+</button>
                                     </div>
-                                    <div class="cell-stock">12</div>
+                                    <div class="cell-stock">Stock: 12</div>
+                                    <div class="cell-price">2.45€/ud</div>
                                 </div>
                             </td>
                             <!-- L -->
                             <td>
-                                <div class="cell" data-color="blanco" data-size="L" data-stock="8">
+                                <div class="cell" data-color="blanco" data-size="L" data-stock="8" data-price="2.45">
                                     <div class="cell-controls">
                                         <button class="cell-btn minus">−</button>
                                         <input type="number" class="cell-input" value="0" min="0">
                                         <button class="cell-btn plus">+</button>
                                     </div>
-                                    <div class="cell-stock">8</div>
+                                    <div class="cell-stock">Stock: 8</div>
+                                    <div class="cell-price">2.45€/ud</div>
                                 </div>
                             </td>
                             <!-- XL -->
                             <td>
-                                <div class="cell" data-color="blanco" data-size="XL" data-stock="20">
+                                <div class="cell" data-color="blanco" data-size="XL" data-stock="20" data-price="2.85">
                                     <div class="cell-controls">
                                         <button class="cell-btn minus">−</button>
                                         <input type="number" class="cell-input" value="0" min="0">
                                         <button class="cell-btn plus">+</button>
                                     </div>
-                                    <div class="cell-stock">20</div>
+                                    <div class="cell-stock">Stock: 20</div>
+                                    <div class="cell-price">2.85€/ud</div>
                                 </div>
                             </td>
                             <!-- 2XL -->
                             <td>
-                                <div class="cell" data-color="blanco" data-size="2XL" data-stock="5">
+                                <div class="cell" data-color="blanco" data-size="2XL" data-stock="5" data-price="3.25">
                                     <div class="cell-controls">
                                         <button class="cell-btn minus">−</button>
                                         <input type="number" class="cell-input" value="0" min="0">
                                         <button class="cell-btn plus">+</button>
                                     </div>
-                                    <div class="cell-stock">5</div>
+                                    <div class="cell-stock">Stock: 5</div>
+                                    <div class="cell-price">3.25€/ud</div>
                                 </div>
                             </td>
                             <!-- 3XL -->
                             <td>
-                                <div class="cell" data-color="blanco" data-size="3XL" data-stock="3">
+                                <div class="cell" data-color="blanco" data-size="3XL" data-stock="3" data-price="4.15">
                                     <div class="cell-controls">
                                         <button class="cell-btn minus">−</button>
                                         <input type="number" class="cell-input" value="0" min="0">
                                         <button class="cell-btn plus">+</button>
                                     </div>
-                                    <div class="cell-stock">3</div>
+                                    <div class="cell-stock">Stock: 3</div>
+                                    <div class="cell-price">4.15€/ud</div>
                                 </div>
                             </td>
                             <!-- 4XL -->
                             <td>
-                                <div class="cell" data-color="blanco" data-size="4XL" data-stock="2">
+                                <div class="cell" data-color="blanco" data-size="4XL" data-stock="2" data-price="5.75">
                                     <div class="cell-controls">
                                         <button class="cell-btn minus">−</button>
                                         <input type="number" class="cell-input" value="0" min="0">
                                         <button class="cell-btn plus">+</button>
                                     </div>
-                                    <div class="cell-stock">2</div>
+                                    <div class="cell-stock">Stock: 2</div>
+                                    <div class="cell-price">5.75€/ud</div>
                                 </div>
                             </td>
                         </tr>
-                        <!-- Fila Negro (igual estructura, sólo cambia data-color y stock si varía) -->
+                        <!-- Fila Negro -->
                         <tr>
                             <td>Negro</td>
                             <td>
-                                <div class="cell" data-color="negro" data-size="S" data-stock="15">
+                                <div class="cell" data-color="negro" data-size="S" data-stock="15" data-price="2.45">
                                     <div class="cell-controls">
                                         <button class="cell-btn minus">−</button>
                                         <input type="number" class="cell-input" value="0" min="0">
                                         <button class="cell-btn plus">+</button>
                                     </div>
-                                    <div class="cell-stock">15</div>
+                                    <div class="cell-stock">Stock: 15</div>
+                                    <div class="cell-price">2.45€/ud</div>
                                 </div>
                             </td>
                             <td>
-                                <div class="cell" data-color="negro" data-size="M" data-stock="12">
+                                <div class="cell" data-color="negro" data-size="M" data-stock="12" data-price="2.45">
                                     <div class="cell-controls">
                                         <button class="cell-btn minus">−</button>
                                         <input type="number" class="cell-input" value="0" min="0">
                                         <button class="cell-btn plus">+</button>
                                     </div>
-                                    <div class="cell-stock">12</div>
+                                    <div class="cell-stock">Stock: 12</div>
+                                    <div class="cell-price">2.45€/ud</div>
                                 </div>
                             </td>
                             <td>
-                                <div class="cell" data-color="negro" data-size="L" data-stock="8">
+                                <div class="cell" data-color="negro" data-size="L" data-stock="8" data-price="2.45">
                                     <div class="cell-controls">
                                         <button class="cell-btn minus">−</button>
                                         <input type="number" class="cell-input" value="0" min="0">
                                         <button class="cell-btn plus">+</button>
                                     </div>
-                                    <div class="cell-stock">8</div>
+                                    <div class="cell-stock">Stock: 8</div>
+                                    <div class="cell-price">2.45€/ud</div>
                                 </div>
                             </td>
                             <td>
-                                <div class="cell" data-color="negro" data-size="XL" data-stock="20">
+                                <div class="cell" data-color="negro" data-size="XL" data-stock="20" data-price="2.85">
                                     <div class="cell-controls">
                                         <button class="cell-btn minus">−</button>
                                         <input type="number" class="cell-input" value="0" min="0">
                                         <button class="cell-btn plus">+</button>
                                     </div>
-                                    <div class="cell-stock">20</div>
+                                    <div class="cell-stock">Stock: 20</div>
+                                    <div class="cell-price">2.85€/ud</div>
                                 </div>
                             </td>
                             <td>
-                                <div class="cell" data-color="negro" data-size="2XL" data-stock="5">
+                                <div class="cell" data-color="negro" data-size="2XL" data-stock="5" data-price="3.25">
                                     <div class="cell-controls">
                                         <button class="cell-btn minus">−</button>
                                         <input type="number" class="cell-input" value="0" min="0">
                                         <button class="cell-btn plus">+</button>
                                     </div>
-                                    <div class="cell-stock">5</div>
+                                    <div class="cell-stock">Stock: 5</div>
+                                    <div class="cell-price">3.25€/ud</div>
                                 </div>
                             </td>
                             <td>
-                                <div class="cell" data-color="negro" data-size="3XL" data-stock="3">
+                                <div class="cell" data-color="negro" data-size="3XL" data-stock="3" data-price="4.15">
                                     <div class="cell-controls">
                                         <button class="cell-btn minus">−</button>
                                         <input type="number" class="cell-input" value="0" min="0">
                                         <button class="cell-btn plus">+</button>
                                     </div>
-                                    <div class="cell-stock">3</div>
+                                    <div class="cell-stock">Stock: 3</div>
+                                    <div class="cell-price">4.15€/ud</div>
                                 </div>
                             </td>
                             <td>
-                                <div class="cell" data-color="negro" data-size="4XL" data-stock="2">
+                                <div class="cell" data-color="negro" data-size="4XL" data-stock="2" data-price="5.75">
                                     <div class="cell-controls">
                                         <button class="cell-btn minus">−</button>
                                         <input type="number" class="cell-input" value="0" min="0">
                                         <button class="cell-btn plus">+</button>
                                     </div>
-                                    <div class="cell-stock">2</div>
+                                    <div class="cell-stock">Stock: 2</div>
+                                    <div class="cell-price">5.75€/ud</div>
                                 </div>
                             </td>
                         </tr>
@@ -798,73 +815,80 @@
                         <tr>
                             <td>Azul</td>
                             <td>
-                                <div class="cell" data-color="azul" data-size="S" data-stock="15">
+                                <div class="cell" data-color="azul" data-size="S" data-stock="15" data-price="2.45">
                                     <div class="cell-controls">
                                         <button class="cell-btn minus">−</button>
                                         <input type="number" class="cell-input" value="0" min="0">
                                         <button class="cell-btn plus">+</button>
                                     </div>
-                                    <div class="cell-stock">15</div>
+                                    <div class="cell-stock">Stock: 15</div>
+                                    <div class="cell-price">2.45€/ud</div>
                                 </div>
                             </td>
                             <td>
-                                <div class="cell" data-color="azul" data-size="M" data-stock="12">
+                                <div class="cell" data-color="azul" data-size="M" data-stock="12" data-price="2.45">
                                     <div class="cell-controls">
                                         <button class="cell-btn minus">−</button>
                                         <input type="number" class="cell-input" value="0" min="0">
                                         <button class="cell-btn plus">+</button>
                                     </div>
-                                    <div class="cell-stock">12</div>
+                                    <div class="cell-stock">Stock: 12</div>
+                                    <div class="cell-price">2.45€/ud</div>
                                 </div>
                             </td>
                             <td>
-                                <div class="cell" data-color="azul" data-size="L" data-stock="8">
+                                <div class="cell" data-color="azul" data-size="L" data-stock="8" data-price="2.45">
                                     <div class="cell-controls">
                                         <button class="cell-btn minus">−</button>
                                         <input type="number" class="cell-input" value="0" min="0">
                                         <button class="cell-btn plus">+</button>
                                     </div>
-                                    <div class="cell-stock">8</div>
+                                    <div class="cell-stock">Stock: 8</div>
+                                    <div class="cell-price">2.45€/ud</div>
                                 </div>
                             </td>
                             <td>
-                                <div class="cell" data-color="azul" data-size="XL" data-stock="20">
+                                <div class="cell" data-color="azul" data-size="XL" data-stock="20" data-price="2.85">
                                     <div class="cell-controls">
                                         <button class="cell-btn minus">−</button>
                                         <input type="number" class="cell-input" value="0" min="0">
                                         <button class="cell-btn plus">+</button>
                                     </div>
-                                    <div class="cell-stock">20</div>
+                                    <div class="cell-stock">Stock: 20</div>
+                                    <div class="cell-price">2.85€/ud</div>
                                 </div>
                             </td>
                             <td>
-                                <div class="cell" data-color="azul" data-size="2XL" data-stock="5">
+                                <div class="cell" data-color="azul" data-size="2XL" data-stock="5" data-price="3.25">
                                     <div class="cell-controls">
                                         <button class="cell-btn minus">−</button>
                                         <input type="number" class="cell-input" value="0" min="0">
                                         <button class="cell-btn plus">+</button>
                                     </div>
-                                    <div class="cell-stock">5</div>
+                                    <div class="cell-stock">Stock: 5</div>
+                                    <div class="cell-price">3.25€/ud</div>
                                 </div>
                             </td>
                             <td>
-                                <div class="cell" data-color="azul" data-size="3XL" data-stock="3">
+                                <div class="cell" data-color="azul" data-size="3XL" data-stock="3" data-price="4.15">
                                     <div class="cell-controls">
                                         <button class="cell-btn minus">−</button>
                                         <input type="number" class="cell-input" value="0" min="0">
                                         <button class="cell-btn plus">+</button>
                                     </div>
-                                    <div class="cell-stock">3</div>
+                                    <div class="cell-stock">Stock: 3</div>
+                                    <div class="cell-price">4.15€/ud</div>
                                 </div>
                             </td>
                             <td>
-                                <div class="cell" data-color="azul" data-size="4XL" data-stock="2">
+                                <div class="cell" data-color="azul" data-size="4XL" data-stock="2" data-price="5.75">
                                     <div class="cell-controls">
                                         <button class="cell-btn minus">−</button>
                                         <input type="number" class="cell-input" value="0" min="0">
                                         <button class="cell-btn plus">+</button>
                                     </div>
-                                    <div class="cell-stock">2</div>
+                                    <div class="cell-stock">Stock: 2</div>
+                                    <div class="cell-price">5.75€/ud</div>
                                 </div>
                             </td>
                         </tr>
@@ -872,86 +896,95 @@
                         <tr>
                             <td>Rojo</td>
                             <td>
-                                <div class="cell" data-color="rojo" data-size="S" data-stock="15">
+                                <div class="cell" data-color="rojo" data-size="S" data-stock="15" data-price="2.45">
                                     <div class="cell-controls">
                                         <button class="cell-btn minus">−</button>
                                         <input type="number" class="cell-input" value="0" min="0">
                                         <button class="cell-btn plus">+</button>
                                     </div>
-                                    <div class="cell-stock">15</div>
+                                    <div class="cell-stock">Stock: 15</div>
+                                    <div class="cell-price">2.45€/ud</div>
                                 </div>
                             </td>
                             <td>
-                                <div class="cell" data-color="rojo" data-size="M" data-stock="12">
+                                <div class="cell" data-color="rojo" data-size="M" data-stock="12" data-price="2.45">
                                     <div class="cell-controls">
                                         <button class="cell-btn minus">−</button>
                                         <input type="number" class="cell-input" value="0" min="0">
                                         <button class="cell-btn plus">+</button>
                                     </div>
-                                    <div class="cell-stock">12</div>
+                                    <div class="cell-stock">Stock: 12</div>
+                                    <div class="cell-price">2.45€/ud</div>
                                 </div>
                             </td>
                             <td>
-                                <div class="cell" data-color="rojo" data-size="L" data-stock="8">
+                                <div class="cell" data-color="rojo" data-size="L" data-stock="8" data-price="2.45">
                                     <div class="cell-controls">
                                         <button class="cell-btn minus">−</button>
                                         <input type="number" class="cell-input" value="0" min="0">
                                         <button class="cell-btn plus">+</button>
                                     </div>
-                                    <div class="cell-stock">8</div>
+                                    <div class="cell-stock">Stock: 8</div>
+                                    <div class="cell-price">2.45€/ud</div>
                                 </div>
                             </td>
                             <td>
-                                <div class="cell" data-color="rojo" data-size="XL" data-stock="20">
+                                <div class="cell" data-color="rojo" data-size="XL" data-stock="20" data-price="2.85">
                                     <div class="cell-controls">
                                         <button class="cell-btn minus">−</button>
                                         <input type="number" class="cell-input" value="0" min="0">
                                         <button class="cell-btn plus">+</button>
                                     </div>
-                                    <div class="cell-stock">20</div>
+                                    <div class="cell-stock">Stock: 20</div>
+                                    <div class="cell-price">2.85€/ud</div>
                                 </div>
                             </td>
                             <td>
-                                <div class="cell" data-color="rojo" data-size="2XL" data-stock="5">
+                                <div class="cell" data-color="rojo" data-size="2XL" data-stock="5" data-price="3.25">
                                     <div class="cell-controls">
                                         <button class="cell-btn minus">−</button>
                                         <input type="number" class="cell-input" value="0" min="0">
                                         <button class="cell-btn plus">+</button>
                                     </div>
-                                    <div class="cell-stock">5</div>
+                                    <div class="cell-stock">Stock: 5</div>
+                                    <div class="cell-price">3.25€/ud</div>
                                 </div>
                             </td>
                             <td>
-                                <div class="cell" data-color="rojo" data-size="3XL" data-stock="3">
+                                <div class="cell" data-color="rojo" data-size="3XL" data-stock="3" data-price="4.15">
                                     <div class="cell-controls">
                                         <button class="cell-btn minus">−</button>
                                         <input type="number" class="cell-input" value="0" min="0">
                                         <button class="cell-btn plus">+</button>
                                     </div>
-                                    <div class="cell-stock">3</div>
+                                    <div class="cell-stock">Stock: 3</div>
+                                    <div class="cell-price">4.15€/ud</div>
                                 </div>
                             </td>
                             <td>
-                                <div class="cell" data-color="rojo" data-size="4XL" data-stock="2">
+                                <div class="cell" data-color="rojo" data-size="4XL" data-stock="2" data-price="5.75">
                                     <div class="cell-controls">
                                         <button class="cell-btn minus">−</button>
                                         <input type="number" class="cell-input" value="0" min="0">
                                         <button class="cell-btn plus">+</button>
                                     </div>
-                                    <div class="cell-stock">2</div>
+                                    <div class="cell-stock">Stock: 2</div>
+                                    <div class="cell-price">5.75€/ud</div>
                                 </div>
                             </td>
                         </tr>
                     </tbody>
                 </table>
+
+                <!-- Botones de acción -->
                 <div class="product-actions">
-                    <button class="add-to-cart-btn">Añadir al carrito</button>
-                    <button class="size-guide-btn">Guía de tallas</button>
+                    <button class="add-to-cart-btn">Añadir al Carrito</button>
+                    <button class="add-to-cart-btn size-guide-btn">Guía de Tallas</button>
                 </div>
+
+                <!-- Botón de descarga PDF -->
                 <div class="product-actions-download">
-                    <button class="download-pdf-btn" type="button" data-pdf-url="#">
-                        Descargar PDF
-                    </button>
+                    <button class="download-pdf-btn">Descargar PDF</button>
                 </div>
             </div>
         </div>
@@ -965,65 +998,105 @@
                     <h3>TEXKING</h3>
                     <p>Tu tienda de confianza para productos de calidad. Diseños únicos y personalizados.</p>
                 </div>
+
                 <div class="footer-section">
                     <h3>Contacto</h3>
                     <ul class="contact-info">
-                        <li>Email: info@texking.com</li>
-                        <li>Teléfono: +34 123 456 789</li>
-                        <li>Dirección: Calle Principal 123, Madrid</li>
+                        <li>Email: pedido@umatexnation.com</li>
+                        <li>Teléfono: +34 671 24 30 35</li>
+                        <li>Almacén: Calle Guadalquivir 9, 28947, Fuenlabrada Madrid </li>
+                        <li>Oficina: Calle Diego Manchado 50, Local Derecha 28038, Madrid</li>
                     </ul>
                 </div>
             </div>
+
             <div class="footer-bottom">
                 <p>&copy; 2025 Texking.</p>
             </div>
         </div>
     </footer>
 
-    <!-- JavaScript -->
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Galería thumbnails
-            document.querySelectorAll('.product-thumb').forEach(thumb => {
-                thumb.addEventListener('click', () => {
-                    document.querySelectorAll('.product-thumb').forEach(t => t.classList.remove('active'));
-                    thumb.classList.add('active');
-                    const alt = thumb.querySelector('img').alt;
-                    document.querySelector('.product-main-image img').alt = alt;
-                });
-            });
+        // Funcionalidad para los botones + y - de cada celda
+        document.querySelectorAll('.cell-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                const input = this.parentElement.querySelector('.cell-input');
+                const isPlus = this.classList.contains('plus');
+                const isMinus = this.classList.contains('minus');
+                const cell = this.closest('.cell');
+                const stock = parseInt(cell.dataset.stock);
 
-            // Controles de cada celda
-            document.querySelectorAll('.stock-table .cell').forEach(cell => {
-                const minus = cell.querySelector('.minus');
-                const plus = cell.querySelector('.plus');
+                let currentValue = parseInt(input.value) || 0;
+
+                if (isPlus && currentValue < stock) {
+                    input.value = currentValue + 1;
+                } else if (isMinus && currentValue > 0) {
+                    input.value = currentValue - 1;
+                }
+
+                updateCartCount();
+            });
+        });
+
+        // Actualizar el contador del carrito
+        function updateCartCount() {
+            let totalItems = 0;
+            document.querySelectorAll('.cell-input').forEach(input => {
+                totalItems += parseInt(input.value) || 0;
+            });
+            document.querySelector('.cart-count').textContent = totalItems;
+        }
+
+        // Funcionalidad del botón "Añadir al Carrito"
+        document.querySelector('.add-to-cart-btn').addEventListener('click', function () {
+            const items = [];
+            document.querySelectorAll('.cell').forEach(cell => {
                 const input = cell.querySelector('.cell-input');
-                const stock = parseInt(cell.dataset.stock, 10);
+                const quantity = parseInt(input.value) || 0;
 
-                minus.addEventListener('click', () => {
-                    let v = parseInt(input.value, 10);
-                    if (v > 0) input.value = v - 1;
-                });
-                plus.addEventListener('click', () => {
-                    let v = parseInt(input.value, 10);
-                    if (v < stock) input.value = v + 1;
-                });
-            });
-
-            // Añadir al carrito (suma todos los valores de las celdas)
-            document.querySelector('.add-to-cart-btn').addEventListener('click', () => {
-                let totalUnits = 0;
-                document.querySelectorAll('.stock-table .cell-input').forEach(input => {
-                    totalUnits += parseInt(input.value, 10) || 0;
-                });
-                if (totalUnits > 0) {
-                    alert(`Has añadido ${totalUnits} unidad(es) al carrito.`);
-                    const cartCount = document.querySelector('.cart-count');
-                    cartCount.textContent = parseInt(cartCount.textContent, 10) + totalUnits;
-                } else {
-                    alert('Por favor, selecciona al menos una unidad.');
+                if (quantity > 0) {
+                    items.push({
+                        color: cell.dataset.color,
+                        size: cell.dataset.size,
+                        quantity: quantity,
+                        price: parseFloat(cell.dataset.price)
+                    });
                 }
             });
+
+            if (items.length > 0) {
+                alert(`Productos añadidos al carrito:\n${items.map(item =>
+                    `${item.color} ${item.size}: ${item.quantity} unidades (${item.price}€/ud)`
+                ).join('\n')}`);
+            } else {
+                alert('Por favor, selecciona al menos un producto.');
+            }
+        });
+
+        // Funcionalidad del botón "Descargar PDF"
+        document.querySelector('.download-pdf-btn').addEventListener('click', function () {
+            alert('Descargando ficha técnica del producto...');
+            // Aquí iría la lógica real para descargar el PDF
+        });
+
+        // Funcionalidad de búsqueda
+        document.querySelector('.search-bar input').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                const searchTerm = this.value.trim();
+                if (searchTerm) {
+                    alert(`Buscando: ${searchTerm}`);
+                    // Aquí iría la lógica real de búsqueda
+                }
+            }
+        });
+
+        document.querySelector('.search-bar button').addEventListener('click', function () {
+            const searchInput = this.parentElement.querySelector('input');
+            const searchTerm = searchInput.value.trim();
+            if (searchTerm) {
+                alert(`Buscando: ${searchTerm}`);
+                // Aquí iría la lógica real de búsqueda
+            }
         });
     </script>
 </body>
